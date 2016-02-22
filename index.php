@@ -15,18 +15,10 @@ $query = "INSERT INTO fp_color (name) VALUES ('green')";
 
 mysql_query($query);
 
-
-
-
 mysql_close($mysql_handle);
 
 ?>
 
-<html>
- <head>
-  <title>PHP Test</title>
- </head>
- <body>
- <?php echo '<p>Hello World</p>'; ?> 
- </body>
-</html>
+<? include "header.php" ?>
+  <?php echo '<p>Hello World</p>'; ?>
+<? include "footer.php" ?>
