@@ -1,28 +1,70 @@
-<?php
+<? include "header.php" ?>
 
-$dbhost = 'oniddb.cws.oregonstate.edu';
-$dbname = 'siddonj-db';
-$dbuser = 'siddonj-db';
-$dbpass = 'AFHMfMrQNPUENiKr';
+    <h1>Insert Color</h1>
+    <form action="insertColor.php" method="post" id="insertColor">
+      <div class="form-group">
+        <label for="NameInput">Name</label>
+        <input type="text" class="form-control" name="NameInput" id="NameInput" placeholder="Name">
+      </div>
+      <button type="submit" class="btn btn-default">Insert</button>
+    </form>
 
-$mysql_handle = mysql_connect($dbhost, $dbuser, $dbpass)
-  or die("Error connecting to database server");
+<? include "footer.php" ?>
 
-mysql_select_db($dbname, $mysql_handle)	or die("Error selecting database: $dbname");        // Select database.
 
-$name = $_POST['name'];                           // Get name
-$name = mysql_real_escape_string($name);    // Clean string.
 
-$query = "INSERT INTO fp_color (name) VALUES ('$name');";
+<script>
+  $(document).ready(function() {
+    var form = document.getElementById('insertColor');
 
-$result=mysql_query($query);
+    // When form is submitted.
+    $( "#insertColor" ).submit(function( event ) {
 
-if($result == 1) {
-  echo "<h2>Success!</h2>";
-} else {
-  echo "<h2>Failure</h2>";
-}
+      // get the form data
+      var formData = {
+        'name'              : $('input[name=NameInput]').val()
+      };
 
-mysql_close($mysql_handle);
+      // POST form data.
+      $.post( "insertColor.php", formData, function( data ) {
+        var parsedData = JSON.parse(data);
 
-?>
+        console.log(parsedData.success);
+
+        if(parsedData.success) {        // Insert was successful.
+          $( ".alert-success" ).html( parsedData.message );     // Set content.
+          $(".alert-success").alert();
+
+          // Fade success away.
+          $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+            $(".alert-success").alert('close');
+          });
+
+          // Post was successful so clear all form input.
+          for(var i=0; i < form.elements.length; i++){
+            var e = form.elements[i];
+            e.value = '';
+          }
+
+        } else {
+          $( ".alert-danger" ).html( parsedData.message );     // Set content.
+          $(".alert-danger").alert();
+
+          // Fade failure away.
+          $(".alert-danger").fadeTo(2000, 500).slideUp(500, function(){
+            $(".alert-danger").alert('close');
+          });
+        }
+
+      }).fail(function() {        // Total server error.
+        $(".alert-danger").alert();
+        $(".alert-danger").fadeTo(2000, 500).slideUp(500, function(){
+          $(".alert-danger").alert('close');
+        });
+      })
+
+      event.preventDefault();
+    })
+
+  })
+</script>

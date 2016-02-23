@@ -14,6 +14,8 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+    <!-- My custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
     <!-- include jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -35,11 +37,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="index.php">MTG Collection Manager</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Insert <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -48,8 +50,8 @@
                 <li><a href="#">Deck</a></li>
                 <li><a href="#">Person</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="insert-color.html">Color</a></li>
-                <li><a href="insert-type.html">Type</a></li>
+                <li><a href="insert-color.php">Color</a></li>
+                <li><a href="insert-type.php">Type</a></li>
               </ul>
             </li>
             <li><a href="#contact">View</a></li>
@@ -57,3 +59,14 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+
+    <div class="container">
+
+      <!-- Error alert boxes. -->
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
