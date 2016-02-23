@@ -5,6 +5,7 @@
   $dbuser = 'siddonj-db';
   $dbpass = 'AFHMfMrQNPUENiKr';
 
+
   $mysql_handle = mysql_connect($dbhost, $dbuser, $dbpass)
     or die("Error connecting to database server");
 
