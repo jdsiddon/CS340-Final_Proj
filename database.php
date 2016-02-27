@@ -1,10 +1,16 @@
 <?php
   // Database config information.
-  $dbhost = 'oniddb.cws.oregonstate.edu';
-  $dbname = 'siddonj-db';
-  $dbuser = 'siddonj-db';
-  $dbpass = 'AFHMfMrQNPUENiKr';
+  // OSU DB
+  // $dbhost = 'oniddb.cws.oregonstate.edu';
+  // $dbname = 'siddonj-db';
+  // $dbuser = 'siddonj-db';
+  // $dbpass = 'AFHMfMrQNPUENiKr';
 
+  // LOCAL DEV
+  $dbhost = 'localhost';
+  $dbname = 'siddonj-db';
+  $dbuser = 'root';
+  $dbpass = 'root';
 
   $mysql_handle = mysql_connect($dbhost, $dbuser, $dbpass)
     or die("Error connecting to database server");

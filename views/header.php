@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- My custom CSS -->
-    <link rel="stylesheet" href="/~siddonj/cs340/css/custom.css">
+    <link rel="stylesheet" href="/Final_Project/css/custom.css">
     <!-- include jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">MTG Collection Manager</a>
+          <a class="navbar-brand" href="/Final_Project/views/index.php">MTG Collection Manager</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -44,16 +44,32 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Insert <span class="caret"></span></a>
               <ul class="dropdown-menu">
+                <li><a href="/~siddonj/cs340/views/card/insert.php">Card</a></li>
+                <li><a href="#">Collection</a></li>
+                <li><a href="#">Deck</a></li>
+                <li><a href="#">Person</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/Final_Project/views/deck/insert.php">Deck</a></li>
+                <li><a href="/Final_Project/views/color/insert.php">Color</a></li>
+                <li><a href="/Final_Project/views/type/insert.php">Type</a></li>
+                <!--<li><a href="/~siddonj/cs340/views/deck/insert.php">Deck</a></li>
+                <li><a href="/~siddonj/cs340/views/color/insert.php">Color</a></li>
+                <li><a href="/~siddonj/cs340/views/type/insert.php">Type</a></li>-->
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View <span class="caret"></span></a>
+              <ul class="dropdown-menu">
                 <li><a href="#">Card</a></li>
                 <li><a href="#">Collection</a></li>
                 <li><a href="#">Deck</a></li>
                 <li><a href="#">Person</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="/~siddonj/cs340/views/color/insert.php">Color</a></li>
-                <li><a href="/~siddonj/cs340/views/type/insert.php">Type</a></li>
+                <li><a href="/Final_Project/views/deck/index.php">Deck</a></li>
+                <li><a href="/Final_Project/views/color/index.php">Color</a></li>
+                <li><a href="/Final_Project/views/type/index.php">Type</a></li>
               </ul>
             </li>
-            <li><a href="#contact">View</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

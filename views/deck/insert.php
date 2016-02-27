@@ -3,7 +3,7 @@
 
 <? include "../header.php" ?>
 
-    <h1>Insert Color</h1>
+    <h1>Insert Deck</h1>
     <form action="/" method="post" id="insert">
       <div class="form-group">
         <label for="name">Name</label>
@@ -25,10 +25,10 @@
 
       // get the form data
       var formData = {
-        'name': $('input[name=name]').val()
+        'name'              : $('input[name=name]').val()
       };
 
-      var route = "<?php echo $controllers; ?>color/insert.php";      // Route to controllers folder.
+      var route = "<?php echo $controllers; ?>deck/insert.php";      // Route to controllers folder.
 
       // POST form data.
       $.post( route, formData, function( data ) {
