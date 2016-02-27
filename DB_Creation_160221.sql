@@ -29,7 +29,7 @@ CREATE TABLE fp_card (
 
 -- Create owner table
 CREATE TABLE fp_owner (
-  id INT NOT NULL,
+  id INT NOT NULL AUTO_INCREMENT,
   fname VARCHAR(255),
   lname VARCHAR(255),
   PRIMARY KEY(id)

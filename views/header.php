@@ -47,11 +47,11 @@
                 <li><a href="/~siddonj/cs340/views/card/insert.php">Card</a></li>
                 <li><a href="#">Collection</a></li>
                 <li><a href="#">Deck</a></li>
-                <li><a href="#">Person</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/Final_Project/views/deck/insert.php">Deck</a></li>
                 <li><a href="/Final_Project/views/color/insert.php">Color</a></li>
                 <li><a href="/Final_Project/views/type/insert.php">Type</a></li>
+                <li><a href="/Final_Project/views/owner/insert.php">Owner</a></li>
                 <!--<li><a href="/~siddonj/cs340/views/deck/insert.php">Deck</a></li>
                 <li><a href="/~siddonj/cs340/views/color/insert.php">Color</a></li>
                 <li><a href="/~siddonj/cs340/views/type/insert.php">Type</a></li>-->
@@ -63,11 +63,11 @@
                 <li><a href="#">Card</a></li>
                 <li><a href="#">Collection</a></li>
                 <li><a href="#">Deck</a></li>
-                <li><a href="#">Person</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/Final_Project/views/deck/index.php">Deck</a></li>
                 <li><a href="/Final_Project/views/color/index.php">Color</a></li>
                 <li><a href="/Final_Project/views/type/index.php">Type</a></li>
+                <li><a href="/Final_Project/views/owner/index.php">Owner</a></li>
               </ul>
             </li>
           </ul>

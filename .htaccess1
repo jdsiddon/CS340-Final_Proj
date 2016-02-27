@@ -1,0 +1,2 @@
+SetEnv HTTP_MY_VARIABLE "/~siddonj/cs340/"
+php_value include_path "/~siddonj/cs340/config.php"
