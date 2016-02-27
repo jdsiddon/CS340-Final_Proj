@@ -17,7 +17,6 @@ CREATE TABLE fp_color (
 CREATE TABLE fp_card (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255),
-  color INT NOT NULL,
   type INT NOT NULL,
   ability TEXT NOT NULL,
   power INT,

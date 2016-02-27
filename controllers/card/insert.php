@@ -7,6 +7,7 @@ $data = array();        // Place to pass back data to client.
 
 
 // Get form values.
+// Power and toughness not required.
 if(empty($_POST['name']))
   $errors['name'] = 'Name required';
 if(empty($_POST['color']))
@@ -15,10 +16,6 @@ if(empty($_POST['type']))
   $errors['type'] = 'Type required';
 if(empty($_POST['ability']))
   $errors['ability'] = 'Ability required';
-if(empty($_POST['power']))
-  $errors['power'] = 'Power required';
-if(empty($_POST['toughness']))
-  $errors['toughness'] = 'Toughness required';
 if(empty($_POST['flavor_text']))
   $errors['flavor_text'] = 'Flavor text required';
 if(empty($_POST['casting_cost']))
@@ -51,13 +48,22 @@ if(!empty($errors)) {
   $casting_cost = mysql_real_escape_string($casting_cost);
 
   // SQL Statement
-  //$query = "INSERT INTO fp_card (name, color, type, ability, power, toughness, flavor_text, casting_cost) VALUES ('$name', '$color', '$type', '$ability', '$power', '$toughness', '$flavor_text', '$casting_cost');";
-  $query = "SELECT id, name FROM fp_color;";
+  $query = "INSERT INTO fp_card (name, type, ability, power, toughness, flavor_text, casting_cost)
+              VALUES ('$name', '$type', '$ability', '$power', '$toughness', '$flavor_text', '$casting_cost');";
 
-  $result = mysql_query($query);
+  $result1 = mysql_query($query);      // Insert the new card.
+
+  $query = "INSERT INTO fp_card_color (card_id, color_id)
+              VALUES (
+                LAST_INSERT_ID(),
+                (SELECT id FROM fp_color WHERE fp_color.name='$color' LIMIT 1)
+              );";
+
+  $result2 = mysql_query($query);      // Insert color relationship.
+
 
   // Insert was successful.
-  if($result == 1) {
+  if($result1 == 1 || $result2 == 1) {
     $data['success'] = true;
     $data['message'] = 'Success!';
 
@@ -71,8 +77,6 @@ if(!empty($errors)) {
   echo json_encode($data);        // Send back to client.
 
 }
-
-
 
 mysql_close($mysql_handle);
 

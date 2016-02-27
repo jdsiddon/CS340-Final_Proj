@@ -57,7 +57,6 @@
       var formData = {
         'name': $('input[name=name]').val(),
         'color': $('select[name=color]').val(),
-        // /'type': $('checkbox[name=type]').val(),
         'type': 'enchantment',
         'ability': $('textarea[name=ability]').val(),
         'power': $('input[name=power]').val(),
