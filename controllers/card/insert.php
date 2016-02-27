@@ -53,10 +53,12 @@ if(!empty($errors)) {
 
   $result1 = mysql_query($query);      // Insert the new card.
 
+  $last_insert = mysql_insert_id();    // Get last insert.
+
   $query = "INSERT INTO fp_card_color (card_id, color_id)
               VALUES (
-                LAST_INSERT_ID(),
-                (SELECT id FROM fp_color WHERE fp_color.name='$color' LIMIT 1)
+                '$last_insert',
+                (SELECT id FROM fp_color WHERE fp_color.id='".$color."')
               );";
 
   $result2 = mysql_query($query);      // Insert color relationship.

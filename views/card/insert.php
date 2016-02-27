@@ -1,5 +1,6 @@
 <?php include "../../config.php" ?>
 <?php require_once( ROOT_DIR.'/routes.php' ); ?>
+<?php require_once( ROOT_DIR.'/controllers/card/new.php' ); ?>
 
 <? include "../header.php" ?>
 
@@ -12,7 +13,11 @@
 
         <label for="color">Color</label>
         <select class="form-control" name="color" id="color">
-          <option value="yellow">Yellow</option>
+        <?php
+          while ($color = mysql_fetch_array($colors)) {
+            echo '<option value="'.$color[id].'">'.$color[name].'</option>';
+          }
+        ?>
         </select>
 
         <label for="type">Type</label>
