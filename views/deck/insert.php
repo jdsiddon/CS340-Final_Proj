@@ -1,14 +1,28 @@
 <?php include "../../config.php" ?>
 <?php require_once( ROOT_DIR.'/routes.php' ); ?>
+<?php require_once( ROOT_DIR.'/controllers/card/new.php' ); ?>
 
 <? include "../header.php" ?>
 
-    <h1>Insert Deck</h1>
+    <h1>Create Deck</h1>
     <form action="/" method="post" id="insert">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="Name">
       </div>
+
+      <div class="form-group">
+        <label for="name">Owner</label>
+        <select class="form-control" name="owner">
+        <?php
+          // Loop through each color.
+          while ($owner = mysql_fetch_array($owners)) {
+            echo '<option value="'.$owner[id].'">'.$owner[lname].', '.$owner[fname].'</option>';
+          }
+        ?>
+        </select>
+      </div>
+
       <button type="submit" class="btn btn-default">Insert</button>
     </form>
 
@@ -25,11 +39,13 @@
 
       // get the form data
       var formData = {
-        'name'              : $('input[name=name]').val()
+        'name': $('input[name=name]').val(),
+        'owner': $('select[name=owner]').val()
       };
 
       var route = "<?php echo $controllers; ?>deck/insert.php";      // Route to controllers folder.
 
+      console.log(formData);
       // POST form data.
       $.post( route, formData, function( data ) {
         var parsedData = JSON.parse(data);

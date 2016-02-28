@@ -5,15 +5,17 @@
 
     <h1>Insert Owner</h1>
     <form action="/" method="post" id="insert">
-      <div class="form-group">
 
+      <div class="form-group">
         <label for="fname">First Name</label>
         <input type="text" class="form-control" name="fname" id="fname" placeholder="First Name">
+      </div>
 
+      <div class="form-group">
         <label for="lname">Last Name</label>
         <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name">
-
       </div>
+      
       <button type="submit" class="btn btn-default">Insert</button>
     </form>
 

@@ -10,6 +10,7 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
+        <th></th>
       </tr>
 
     <?php
@@ -17,6 +18,7 @@
         echo '<tr>';
           echo '<td>'.$row[id].'</td>';
           echo '<td>'.$row[name].'</td>';
+          echo '<td><a href="./edit.php?id='.$row[id].'">Add Cards</a></td>';
         echo '</tr>';
       }
     ?>

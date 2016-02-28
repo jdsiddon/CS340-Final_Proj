@@ -44,7 +44,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Insert <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/Final_Project/views/card/insert.php">Deck</a></li>
+                <li><a href="/Final_Project/views/deck/insert.php">Deck</a></li>
                 <li><a href="#">Collection</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/Final_Project/views/card/insert.php">Card</a></li>
@@ -61,7 +61,6 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Collection</a></li>
-                <li><a href="#">Deck</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="/Final_Project/views/card/index.php">Card</a></li>
                 <li><a href="/Final_Project/views/deck/index.php">Deck</a></li>

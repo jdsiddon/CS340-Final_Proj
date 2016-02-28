@@ -87,3 +87,14 @@ CREATE TABLE fp_deck_card (
   FOREIGN KEY(card_id) REFERENCES fp_card(id),
   PRIMARY KEY(id)
 );
+
+
+-- Create deck to owner relation
+CREATE TABLE fp_deck_owner (
+  id INT NOT NULL AUTO_INCREMENT,
+  deck_id INT NOT NULL,
+  owner_id INT NOT NULL,
+  FOREIGN KEY(deck_id) REFERENCES fp_deck(id),
+  FOREIGN KEY(owner_id) REFERENCES fp_owner(id),
+  PRIMARY KEY(id)
+);
