@@ -7,43 +7,59 @@
     <h1>Insert Card</h1>
     <form action="/" method="post" id="insert">
       <div class="form-group">
-
         <label for="name">Name</label>
-        <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+        <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+      </div>
 
+      <div class="form-group">
         <label for="color">Color</label>
-        <select class="form-control" name="color" id="color">
+        <div class="checkbox" name="colors" id="colors" required>
         <?php
+          // Loop through each color.
           while ($color = mysql_fetch_array($colors)) {
-            echo '<option value="'.$color[id].'">'.$color[name].'</option>';
+            echo '<label class="checkbox-inline"><input type="checkbox" value="'.$color[id].'" name="color">'.$color[name].'</label>';
           }
         ?>
-        </select>
-
-        <label for="type">Type</label>
-        <div class="checkbox" name="type">
-          <label>
-            <input type="checkbox" value="enchantment">
-            Enchantment
-          </label>
         </div>
+      </div>
 
+      <div class="form-group">
+        <label for="type">Type</label>
+        <div class="checkbox" name="types" id="types" required>
+        <?php
+          // Loop through each type.
+          while ($type = mysql_fetch_array($types)) {
+            echo '<label class="checkbox-inline"><input type="checkbox" value="'.$type[id].'" name="type">'.$type[name].'</label>';
+          }
+        ?>
+        </div>
+      </div>
+
+      <div class="form-group">
         <label for="ability">Ability</label>
-        <textarea class="form-control" name="ability" id="ability" placeholder="Ability" rows="4"></textarea>
+        <textarea class="form-control" name="ability" id="ability" placeholder="Ability" rows="4" required></textarea>
+      </div>
 
+      <div class="form-group">
         <label for="power">Power</label>
         <input type="number" class="form-control" name="power" id="power">
+      </div>
 
+      <div class="form-group">
         <label for="toughness">Toughness</label>
         <input type="number" class="form-control" name="toughness" id="toughness">
+      </div>
 
+      <div class="form-group">
         <label for="flavor-text">Flavor Text</label>
         <textarea class="form-control" name="flavor-text" id="flavor-text" placeholder="Flavor text" rows="4"></textarea>
-
-        <label for="casting-cost">Casting Cost</label>
-        <input type="number" class="form-control" name="casting-cost" id="casting-cost">
-
       </div>
+
+      <div class="form-group">
+        <label for="casting-cost">Casting Cost</label>
+        <input type="number" class="form-control" name="casting-cost" id="casting-cost" required>
+      </div>
+
       <button type="submit" class="btn btn-default">Insert</button>
     </form>
 
@@ -57,12 +73,22 @@
 
     // When form is submitted.
     $( "#insert" ).submit(function( event ) {
+      var types = [];                                   // Array to hold all card types.
+      var colors = [];
+
+      $('input[name=type]:checked').each(function(idx) {    // Add each type to the types array.
+        types.push($(this).val());
+      })
+
+      $('input[name=color]:checked').each(function(idx) {    // Add each type to the types array.
+        colors.push($(this).val());
+      })
 
       // get the form data
       var formData = {
         'name': $('input[name=name]').val(),
-        'color': $('select[name=color]').val(),
-        'type': 'enchantment',
+        'colors': JSON.stringify(colors),
+        'types': JSON.stringify(types),
         'ability': $('textarea[name=ability]').val(),
         'power': $('input[name=power]').val(),
         'toughness': $('input[name=toughness]').val(),

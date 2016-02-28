@@ -5,19 +5,16 @@
 $errors = array();      // Place to put errors in.
 $data = array();        // Place to pass back data to client.
 
-
 // Get form values.
 // Power and toughness not required.
 if(empty($_POST['name']))
   $errors['name'] = 'Name required';
-if(empty($_POST['color']))
+if(empty($_POST['colors']))
   $errors['color'] = 'Color required';
-if(empty($_POST['type']))
-  $errors['type'] = 'Type required';
+if(empty($_POST['types']))
+  $errors['types'] = 'Type required';
 if(empty($_POST['ability']))
   $errors['ability'] = 'Ability required';
-if(empty($_POST['flavor_text']))
-  $errors['flavor_text'] = 'Flavor text required';
 if(empty($_POST['casting_cost']))
   $errors['casting_cost'] = 'Casting cost required';
 
@@ -28,10 +25,12 @@ if(!empty($errors)) {
   $data['errors'] = $errors;        // Set errors to data errors attr.
 
 } else {          // No errors so process form.
+  $types = array();
+  $colors = array();
 
   $name = $_POST['name'];
-  $color = $_POST['color'];
-  $type = $_POST['type'];
+  $colors = json_decode($_POST['colors']);
+  $types = json_decode($_POST['types']);
   $ability = $_POST['ability'];
   $power = $_POST['power'];
   $toughness = $_POST['toughness'];
@@ -39,33 +38,44 @@ if(!empty($errors)) {
   $casting_cost = $_POST['casting_cost'];
 
   $name = mysql_real_escape_string($name);                      // Clean submitted values.
-  $color = mysql_real_escape_string($color);
-  $type = mysql_real_escape_string($type);
   $ability = mysql_real_escape_string($ability);
   $power = mysql_real_escape_string($power);
   $toughness = mysql_real_escape_string($toughness);
   $flavor_text = mysql_real_escape_string($flavor_text);
   $casting_cost = mysql_real_escape_string($casting_cost);
 
-  // SQL Statement
-  $query = "INSERT INTO fp_card (name, type, ability, power, toughness, flavor_text, casting_cost)
-              VALUES ('$name', '$type', '$ability', '$power', '$toughness', '$flavor_text', '$casting_cost');";
-
-  $result1 = mysql_query($query);      // Insert the new card.
+  // Insert Card
+  $query = "INSERT INTO fp_card (name, ability, power, toughness, flavor_text, casting_cost)
+              VALUES ('$name', '$ability', '$power', '$toughness', '$flavor_text', '$casting_cost');";
+  $result_card = mysql_query($query);      // Insert the new card.
 
   $last_insert = mysql_insert_id();    // Get last insert.
 
-  $query = "INSERT INTO fp_card_color (card_id, color_id)
-              VALUES (
-                '$last_insert',
-                (SELECT id FROM fp_color WHERE fp_color.id='".$color."')
-              );";
+  // Insert Card Types
+  foreach ($types as $type) {
+    $type = mysql_real_escape_string($type);
+    $result_card_type = mysql_query("INSERT INTO fp_card_type (type_id, card_id) VALUES ('$type', '$last_insert');");
 
-  $result2 = mysql_query($query);      // Insert color relationship.
+    if($result_card_type != 1) {        // An error occured on insert.
+      break;
+    }
+  }
+
+  // Insert Card Color
+  foreach ($colors as $color) {
+    $color = mysql_real_escape_string($color);      // Clean string.
+    $result_card_color = mysql_query("INSERT INTO fp_card_color (card_id, color_id) VALUES ('$last_insert',
+      (SELECT id FROM fp_color WHERE fp_color.id='".$color."')
+    );");
+
+    if($result_card_color != 1) {       // An error occured during query.
+      break;
+    }
+  }
 
 
-  // Insert was successful.
-  if($result1 == 1 || $result2 == 1) {
+  // Make sure all inserts were successful.
+  if($result_card == 1 || $result_card_type == 1 || $result_card_type == 1) {
     $data['success'] = true;
     $data['message'] = 'Success!';
 
