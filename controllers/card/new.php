@@ -14,6 +14,10 @@
   $query = "SELECT id, name FROM fp_type;";
   $types = mysql_query($query);
 
+  // SQL Statement, get all the owners that can own a card from the owners table.
+  $query = "SELECT id, fname, lname FROM fp_owner;";
+  $owners = mysql_query($query);
+
   mysql_close($mysql_handle);
 
 ?>

@@ -6,6 +6,19 @@
 
     <h1>Insert Card</h1>
     <form action="/" method="post" id="insert">
+
+      <div class="form-group">
+        <label for="name">Owner</label>
+        <select class="form-control" name="owner">
+        <?php
+          // Loop through each color.
+          while ($owner = mysql_fetch_array($owners)) {
+            echo '<option value="'.$owner[id].'">'.$owner[lname].', '.$owner[fname].'</option>';
+          }
+        ?>
+        </select>
+      </div>
+
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
@@ -86,6 +99,7 @@
 
       // get the form data
       var formData = {
+        'owner': $('select[name=owner]').val(),
         'name': $('input[name=name]').val(),
         'colors': JSON.stringify(colors),
         'types': JSON.stringify(types),
