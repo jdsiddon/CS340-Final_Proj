@@ -10,6 +10,7 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>Color</th>
         <th>Type</th>
         <th>Ability</th>
         <th>Power</th>
@@ -17,18 +18,27 @@
         <th>Flavor Text</th>
         <th>Casting Cost</th>
       </tr>
-
+<!-- cd.id, cd.name, clr.name, cd.ability, cd.power, cd.toughness, cd.flavor_text, cd.casting_cost -->
+<!-- cd.id AS id,
+cd.name AS card_name,
+clr.name AS card_color,
+cd.ability AS card_ability,
+cd.power AS card_power,
+cd.toughness AS card_power,
+cd.flavor_text AS card_flavor_text,
+cd.casting_cost AS card_casting_cost -->
     <?php
       while ($row = mysql_fetch_array($result)) {
         echo '<tr>';
           echo '<td>'.$row[id].'</td>';
-          echo '<td>'.$row[name].'</td>';
-          echo '<td>'.$row[type].'</td>';
-          echo '<td>'.$row[ability].'</td>';
-          echo '<td>'.$row[power].'</td>';
-          echo '<td>'.$row[toughness].'</td>';
-          echo '<td>'.$row[flavor_text].'</td>';
-          echo '<td>'.$row[casting_cost].'</td>';
+          echo '<td>'.$row[card_name].'</td>';
+          echo '<td>'.$row[card_color].'</td>';
+          echo '<td>'.$row[card_type].'</td>';
+          echo '<td>'.$row[card_ability].'</td>';
+          echo '<td>'.$row[card_power].'</td>';
+          echo '<td>'.$row[card_toughness].'</td>';
+          echo '<td>'.$row[card_flavor_text].'</td>';
+          echo '<td>'.$row[card_casting_cost].'</td>';
         echo '</tr>';
       }
     ?>
