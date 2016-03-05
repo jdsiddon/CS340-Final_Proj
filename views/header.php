@@ -25,6 +25,7 @@
     <![endif]-->
   </head>
 
+  <!-- <body class="<?php if(array_pop(explode("/", $_SERVER['REQUEST_URI'])) == "index.php"){ echo 'homepage'; }; ?>"> -->
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -39,7 +40,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home</a></li>
+            <li><a href="index.php">Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Insert <span class="caret"></span></a>
               <ul class="dropdown-menu">

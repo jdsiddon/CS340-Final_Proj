@@ -2,6 +2,14 @@ body {
   padding-top: 50px;
 }
 
+body.homepage {
+  background-image: url("../images/background-img.jpg");
+}
+
+.homepage h1 {
+  color: white;
+}
+
 /* For white cards. */
 .label-warning {
   background-color: #FAEBD7;

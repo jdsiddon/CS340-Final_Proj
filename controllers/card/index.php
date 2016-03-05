@@ -9,17 +9,11 @@
   $query = "SELECT
               cd.id AS id,
               cd.name AS card_name,
-              -- clr.name AS card_color,
-              -- t.name AS card_type,
               cd.ability AS card_ability,
               cd.power AS card_power,
               cd.toughness AS card_power,
               cd.flavor_text AS card_flavor_text,
               cd.casting_cost AS card_casting_cost FROM fp_card AS cd
-                  -- INNER JOIN fp_card_color AS cc ON cc.card_id = cd.id
-                  -- INNER JOIN fp_color as clr ON clr.id = cc.color_id
-                  -- INNER JOIN fp_card_type AS ct ON ct.card_id = cd.id
-                  -- INNER JOIN fp_type AS t on t.id = ct.type_id
                   GROUP BY cd.id
                   ORDER BY cd.id desc;";
 
@@ -33,6 +27,7 @@
     if (!isset($data[$key])) {
       $data[$key] = array();      // Create an array for each individual card.
     }
+
 
     // COLORS
     $card[colors] = array();      // Create an array for the cards colors.
@@ -68,38 +63,6 @@
     // Add card to data.
     $data[$key] = $card;
   }
-
-  // $colors = array();
-  //
-  // $color_query = "SELECT clr.name AS card_color FROM fp_card_color AS cc
-  //   INNER JOIN fp_color as clr ON clr.id = cc.color_id
-  //   WHERE cc.card_id = 56
-  //   GROUP BY clr.name;
-  // ";
-  //
-  // $colors = mysql_query($color_query);
-  // $colors_c = mysql_fetch_array($colors);
-  //
-  // while ($row = mysql_fetch_array($result)) {
-  //   $key = $row[id];
-  //   if (!isset($data[$key])) {
-  //     $data[$key] = array();      // Create an array for each individual card.
-  //   }
-  //
-  //   $row[colors] = array();
-  //
-  //   $color_query = "SELECT clr.name AS card_color FROM fp_card_color AS cc
-  //     INNER JOIN fp_color as clr ON clr.id = cc.color_id
-  //     WHERE cc.card_id = 56;
-  //   ";
-  //
-  //   $colors = mysql_query($color_query);
-  //   $colors_c = mysql_fetch_array($colors);
-  //
-  //   $row[colors] = $colors_c;
-  //
-  //   $data[$key][] = $row;
-  // }
 
   mysql_close($mysql_handle);
 

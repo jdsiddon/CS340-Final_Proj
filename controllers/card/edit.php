@@ -12,32 +12,77 @@
     $card_id = 0;
   }
 
-  // Get card.
-  $query_card = "SELECT
-                  cd.id AS id,
-                  cd.name AS card_name,
-                  clr.name AS card_color,
-                  t.name AS card_type,
-                  cd.ability AS card_ability,
-                  cd.power AS card_power,
-                  cd.toughness AS card_power,
-                  cd.flavor_text AS card_flavor_text,
-                  cd.casting_cost AS card_casting_cost FROM fp_card AS cd
-                    INNER JOIN fp_card_color AS cc ON cc.card_id = cd.id
-                    INNER JOIN fp_color as clr ON clr.id = cc.color_id
-                    INNER JOIN fp_card_type AS ct ON ct.card_id = cd.id
-                    INNER JOIN fp_type AS t on t.id = ct.type_id
-                    WHERE cd.id = '$card_id';";
+  // SQL Statement
+  $query = "SELECT
+              cd.id AS id,
+              cd.name AS card_name,
+              cd.ability AS card_ability,
+              cd.power AS card_power,
+              cd.toughness AS card_toughness,
+              cd.flavor_text AS card_flavor_text,
+              cd.casting_cost AS card_casting_cost FROM fp_card AS cd
+                  WHERE cd.id = '$card_id';";
 
-  $card = mysql_query($query_card);
+  $result = mysql_query($query);
 
-  $card = mysql_fetch_array($card);     // Get deck instance.
+  $data = array();        // $data is what the view will use.
 
-  // Get all of the card colors.
-  $query_card_color = "SELECT clr.id, clr.name FROM fp_color AS clr INNER JOIN fp_card_color AS cc ON cc.card_id = '$card_id';";
+  // Create own array so we have cards with colors.
+  $card = mysql_fetch_array($result);
 
-  $card_colors = mysql_query($query_card_color);
+  // COLORS
+  $card[colors] = array();      // Create an array for the cards colors.
 
+  // Get colors of individual card.
+  $color_query = "SELECT clr.name AS card_color, clr.id AS card_color_id FROM fp_card_color AS cc
+    INNER JOIN fp_color as clr ON clr.id = cc.color_id
+    WHERE cc.card_id = '$card[id]';";
+
+  $card_colors = mysql_query($color_query);
+
+  // Add colors to card color subarray.
+  while($color = mysql_fetch_array($card_colors)) {
+    array_push($card[colors], $color);
+  }
+
+  // Get card owner.
+  $card_owner_query = "SELECT own.id AS card_owner_id FROM fp_owner AS own
+    INNER JOIN fp_collection as col ON col.owner_id = own.id
+    WHERE col.card_id = '$card[id]';";
+
+  $card_owner = mysql_fetch_array(mysql_query($card_owner_query));
+
+  $card[card_owner] = $card_owner[card_owner_id];
+  // End individual owner.
+
+
+  // TYPES
+  $card[types] = array();      // Create an array for the cards colors.
+  // Get types of individual card.
+  $card_type_query = "SELECT t.name AS card_type, t.id AS card_type_id FROM fp_card_type AS ct
+    INNER JOIN fp_type AS t on t.id = ct.type_id
+    WHERE ct.card_id = '$card[id]';";
+
+  $card_types = mysql_query($card_type_query);
+
+  // Add types to card type subarray.
+  while($type = mysql_fetch_array($card_types)) {
+    array_push($card[types], $type);
+  }
+  // End get card types.
+
+
+  // SQL Statement, get all the colors from the color table.
+  $query = "SELECT id, name FROM fp_color;";
+  $colors = mysql_query($query);
+
+  // SQL Statement, get all the types from the type table.
+  $query = "SELECT id, name FROM fp_type;";
+  $types = mysql_query($query);
+
+  // SQL Statement, get all the owners that can own a card from the owners table.
+  $query = "SELECT id, fname, lname FROM fp_owner;";
+  $owners = mysql_query($query);
 
   mysql_close($mysql_handle);
 

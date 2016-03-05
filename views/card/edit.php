@@ -8,33 +8,41 @@
     <form action="/" method="post" id="edit">
 
       <div class="form-group">
+        <label for="name">Name</label>
+        <?php
+          echo '<input type="text" class="form-control" name="name" id="name" placeholder="Name" value="'.$card[card_name].'">';
+        ?>
+      </div>
+
+      <div class="form-group">
         <label for="name">Owner</label>
         <select class="form-control" name="owner">
         <?php
           // Loop through each color.
           while ($owner = mysql_fetch_array($owners)) {
-            echo '<option value="'.$owner[id].'">'.$owner[lname].', '.$owner[fname].'</option>';
+            echo '<option value="'.$owner[id].'"';
+            if($owner[id] == $card[card_owner]) {
+              echo 'selected';
+            }
+            echo '>'.$owner[lname].', '.$owner[fname].'</option>';
           }
         ?>
         </select>
       </div>
 
-
-      <div class="form-group">
-        <label for="name">Name</label>
-        <?php
-          echo '<input type="text" class="form-control" name="name" id="name" placeholder="Name" value="'.$card[card_name].'">'; 
-        ?>
-      </div>
-
-
       <div class="form-group">
         <label for="color">Color</label>
         <div class="checkbox" name="colors" id="colors" required>
         <?php
-          // Loop through each color.
-          while ($color = mysql_fetch_array($colors)) {
-            echo '<label class="checkbox-inline"><input type="checkbox" value="'.$color[id].'" name="color">'.$color[name].'</label>';
+          // Loop through each color, if available color is same as set color of card, make it checked.
+          while($color = mysql_fetch_array($colors)) {
+            echo '<label class="checkbox-inline"><input type="checkbox" value="'.$color[id].'" name="color" ';
+            foreach ($card[colors] as $k => $cc) {
+              if($color[id] == $cc[card_color_id]) {
+                echo 'checked';
+              }
+            }
+            echo '>'.$color[name].'</label>';
           }
         ?>
         </div>
@@ -44,9 +52,15 @@
         <label for="type">Type</label>
         <div class="checkbox" name="types" id="types" required>
         <?php
-          // Loop through each type.
+          // Loop through each type, if available type is same as set type of card, make it checked.
           while ($type = mysql_fetch_array($types)) {
-            echo '<label class="checkbox-inline"><input type="checkbox" value="'.$type[id].'" name="type">'.$type[name].'</label>';
+            echo '<label class="checkbox-inline"><input type="checkbox" value="'.$type[id].'" name="type" ';
+            foreach ($card[types] as $k => $ct) {
+              if($type[id] == $ct[card_type_id]) {
+                echo 'checked';
+              }
+            }
+            echo '>'.$type[name].'</label>';
           }
         ?>
         </div>
@@ -54,27 +68,33 @@
 
       <div class="form-group">
         <label for="ability">Ability</label>
-        <textarea class="form-control" name="ability" id="ability" placeholder="Ability" rows="4" required></textarea>
+        <textarea class="form-control" name="ability" id="ability" placeholder="Ability" rows="4" required><?php echo $card[card_ability]; ?></textarea>
       </div>
 
       <div class="form-group">
         <label for="power">Power</label>
-        <input type="number" class="form-control" name="power" id="power">
+        <?php
+          echo '<input type="number" class="form-control" name="power" id="power" value="'.$card[card_power].'">';
+        ?>
       </div>
 
       <div class="form-group">
         <label for="toughness">Toughness</label>
-        <input type="number" class="form-control" name="toughness" id="toughness">
+        <?php
+          echo '<input type="number" class="form-control" name="toughness" id="toughness" value="'.$card[card_toughness].'">';
+        ?>
       </div>
 
       <div class="form-group">
         <label for="flavor-text">Flavor Text</label>
-        <textarea class="form-control" name="flavor-text" id="flavor-text" placeholder="Flavor text" rows="4"></textarea>
+        <textarea class="form-control" name="flavor-text" id="flavor-text" placeholder="Flavor text" rows="4"><?php echo $card[card_flavor_text]; ?></textarea>
       </div>
 
       <div class="form-group">
         <label for="casting-cost">Casting Cost</label>
-        <input type="number" class="form-control" name="casting-cost" id="casting-cost" required>
+        <?php
+          echo '<input type="number" class="form-control" name="casting-cost" id="casting-cost" value="'.$card[card_casting_cost].'" required>';
+        ?>
       </div>
 
       <button type="submit" class="btn btn-default">Insert</button>
