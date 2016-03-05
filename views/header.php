@@ -11,13 +11,12 @@
 
     <title>CS 340 - Final</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Final_Project/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- My custom CSS -->
     <link rel="stylesheet" href="/Final_Project/css/custom.css">
     <!-- include jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/Final_Project/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

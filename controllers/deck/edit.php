@@ -20,9 +20,8 @@
 
 
   // SQL Statement, get cards owner has.
-  // $query = "SELECT id, name FROM fp_deck WHERE fp_deck.id = '$deck_id' limit 1;";       // Get deck with id that user requested in url string.
-  // $result = mysql_query($query);
-
+  $query = "SELECT id, name FROM fp_card;";       // Get deck with id that user requested in url string.
+  $cards = mysql_query($query);
 
 
 

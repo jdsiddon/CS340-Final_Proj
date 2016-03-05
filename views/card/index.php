@@ -17,28 +17,53 @@
         <th>Toughness</th>
         <th>Flavor Text</th>
         <th>Casting Cost</th>
+        <th></th>
       </tr>
-<!-- cd.id, cd.name, clr.name, cd.ability, cd.power, cd.toughness, cd.flavor_text, cd.casting_cost -->
-<!-- cd.id AS id,
-cd.name AS card_name,
-clr.name AS card_color,
-cd.ability AS card_ability,
-cd.power AS card_power,
-cd.toughness AS card_power,
-cd.flavor_text AS card_flavor_text,
-cd.casting_cost AS card_casting_cost -->
+
     <?php
-      while ($row = mysql_fetch_array($result)) {
+      foreach ($data as $key => $card) {
         echo '<tr>';
-          echo '<td>'.$row[id].'</td>';
-          echo '<td>'.$row[card_name].'</td>';
-          echo '<td>'.$row[card_color].'</td>';
-          echo '<td>'.$row[card_type].'</td>';
-          echo '<td>'.$row[card_ability].'</td>';
-          echo '<td>'.$row[card_power].'</td>';
-          echo '<td>'.$row[card_toughness].'</td>';
-          echo '<td>'.$row[card_flavor_text].'</td>';
-          echo '<td>'.$row[card_casting_cost].'</td>';
+          echo '<td>'.$card[id].'</td>';
+          echo '<td>'.$card[card_name].'</td>';
+          echo '<td>';
+          foreach ($card[colors] as $k => $color) {
+            if($color[card_color] == "Green") {
+              echo' <span class="label label-success">';
+            }
+            if($color[card_color] == "Red") {
+              echo' <span class="label label-danger">';
+            }
+            if($color[card_color] == "Black") {
+              echo' <span class="label label-default">';
+            }
+            if($color[card_color] == "Blue") {
+              echo' <span class="label label-primary">';
+            }
+            if($color[card_color] == "White") {
+              echo' <span class="label label-warning">';
+            }
+            if($color[card_color] == "Colorless") {
+              echo' <span class="label label-info">';
+            }
+            echo $color[card_color].'</span>';
+            echo '<br>';
+          }
+          echo '</td>';
+          echo '<td>';
+          foreach ($card[types] as $k => $type) {
+            echo $type[card_type].', ';
+          }
+          echo '</td>';
+          echo '<td>'.$card[card_ability].'</td>';
+          echo '<td>'.$card[card_power].'</td>';
+          echo '<td>'.$card[card_toughness].'</td>';
+          echo '<td>'.$card[card_flavor_text].'</td>';
+          echo '<td>'.$card[card_casting_cost].'</td>';
+          echo '<td>';
+          echo  '<a class="btn btn-default" href="'.$views.'card/edit.php?id='.$card[id].'">';
+          echo   '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit';
+          echo  '</a>';
+          echo '</td>';
         echo '</tr>';
       }
     ?>
