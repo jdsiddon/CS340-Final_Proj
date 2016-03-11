@@ -10,6 +10,7 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
+        <th>&nbsp;</th>
       </tr>
 
     <?php
@@ -17,6 +18,11 @@
         echo '<tr>';
           echo '<td>'.$row[id].'</td>';
           echo '<td>'.$row[name].'</td>';
+          echo '<td>';
+          echo  '<a class="btn btn-default" href="'.$views.'type/edit.php?id='.$row[id].'">';
+          echo   '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit';
+          echo  '</a>';
+          echo '</td>';
         echo '</tr>';
       }
     ?>

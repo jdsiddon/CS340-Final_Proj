@@ -6,22 +6,22 @@ $errors = array();      // Place to put errors in.
 $data = array();        // Place to pass back data to client.
 
 // Get form values.
-// if(empty($_POST['card_id']))            // If ID was provided we are updating the card, not creating a new one.
-//   $errors['card_id'] = 'Error Updating';
-//
-// // Power and toughness not required.
-// if(empty($_POST['owner']))
-//   $errors['owner'] = 'Owner required';
-// if(empty($_POST['name']))
-//   $errors['name'] = 'Name required';
-// if(empty($_POST['colors']))
-//   $errors['color'] = 'Color required';
-// if(empty($_POST['types']))
-//   $errors['types'] = 'Type required';
-// if(empty($_POST['ability']))
-//   $errors['ability'] = 'Ability required';
-// if(empty($_POST['casting_cost']))
-//   $errors['casting_cost'] = 'Casting cost required';
+if(empty($_POST['card_id']))            // If ID was provided we are updating the card, not creating a new one.
+  $errors['card_id'] = 'Error Updating';
+
+// Power and toughness not required.
+if(empty($_POST['owner']))
+  $errors['owner'] = 'Owner required';
+if(empty($_POST['name']))
+  $errors['name'] = 'Name required';
+if(empty($_POST['colors']))
+  $errors['color'] = 'Color required';
+if(empty($_POST['types']))
+  $errors['types'] = 'Type required';
+if(empty($_POST['ability']))
+  $errors['ability'] = 'Ability required';
+if(empty($_POST['casting_cost']))
+  $errors['casting_cost'] = 'Casting cost required';
 
 
 // We had some errors so make the post fail.
