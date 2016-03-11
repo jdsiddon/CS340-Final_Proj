@@ -6,7 +6,9 @@
 
     <h1>Edit Card</h1>
     <form action="/" method="post" id="edit">
-
+      <?php
+        echo '<input type="text" name="card_id" id="card_id" value="'.$card[id].'" hidden disabled>';
+      ?>
       <div class="form-group">
         <label for="name">Name</label>
         <?php
@@ -109,7 +111,7 @@
     var form = document.getElementById('edit');
 
     // When form is submitted.
-    $( "#insert" ).submit(function( event ) {
+    $( "#edit" ).submit(function( event ) {
       var types = [];                                   // Array to hold all card types.
       var colors = [];
 
@@ -123,6 +125,7 @@
 
       // get the form data
       var formData = {
+        'card_id': $('input[name=card_id]').val(),
         'owner': $('select[name=owner]').val(),
         'name': $('input[name=name]').val(),
         'colors': JSON.stringify(colors),
@@ -137,12 +140,13 @@
       var route = "<?php echo $controllers; ?>card/update.php";      // Route to controllers folder.
 
       console.log(formData);
+      console.log(route);
       // POST form data.
       $.post( route, formData, function( data ) {
         var parsedData = JSON.parse(data);
 
-        console.log(parsedData.success);
-        console.log(parsedData.errors);
+        console.log(parsedData);
+        console.log(parsedData);
 
         if(parsedData.success) {        // Insert was successful.
           $( ".alert-success" ).html( parsedData.message );     // Set content.
