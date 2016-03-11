@@ -11,6 +11,7 @@
         <th>ID</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>&nbsp;</th>
       </tr>
 
     <?php
@@ -19,6 +20,11 @@
           echo '<td>'.$row[id].'</td>';
           echo '<td>'.$row[fname].'</td>';
           echo '<td>'.$row[lname].'</td>';
+          echo '<td>';
+          echo  '<a class="btn btn-default" href="'.$views.'owner/edit.php?id='.$row[id].'">';
+          echo   '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit';
+          echo  '</a>';
+          echo '</td>';
         echo '</tr>';
       }
     ?>

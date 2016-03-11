@@ -99,7 +99,7 @@
         ?>
       </div>
 
-      <button type="submit" class="btn btn-default">Insert</button>
+      <button type="submit" class="btn btn-default">Update</button>
     </form>
 
 <? include "../footer.php" ?>
@@ -156,12 +156,6 @@
           $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
             $(".alert-success").alert('close');
           });
-
-          // Post was successful so clear all form input.
-          for(var i=0; i < form.elements.length; i++){
-            var e = form.elements[i];
-            e.value = '';
-          }
 
         } else {
           $( ".alert-danger" ).html( parsedData.message );     // Set content.
