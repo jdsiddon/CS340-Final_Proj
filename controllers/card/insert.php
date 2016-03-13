@@ -71,22 +71,22 @@ if(!empty($errors)) {
 
 
   // Insert Card Color
-  // foreach ((array)$colors as $color) {
-  //   $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
-  //   $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ($card_insert, (SELECT id FROM fp_color WHERE fp_color.id=$color));");
-  //
-  //   if($result_card_color != 1) {       // An error occured during query.
-  //     break;
-  //   }
-  // }
-
-  $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id)
-    SELECT
-    1 AS card_id,
-    id AS color_id
-    FROM fp_color
-    WHERE id=$color
+  foreach ((array)$colors as $color) {
+    $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
+    $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id)
+        SELECT
+        $card_insert AS card_id,
+        id AS color_id
+        FROM fp_color
+        WHERE id=$color
     ");
+
+    if($result_card_color != 1) {       // An error occured during query.
+      break;
+    }
+  }
+
+
   // $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES (1, SELECT id AS card_id FROM fp_color AS c WHERE fp_color.id=$color limit=1));");
 
   // Insert Card to an Owner's collection.
