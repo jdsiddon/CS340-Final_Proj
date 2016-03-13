@@ -72,11 +72,11 @@ if(!empty($errors)) {
 
   // Insert Card Color
   foreach ((array)$colors as $color) {
-    $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
+    // $color = (int)mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
     $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id)
         SELECT
-        $card_insert AS card_id,
-        id AS color_id
+          $card_insert AS card_id,
+          id AS color_id
         FROM fp_color
         WHERE id=$color
     ");
