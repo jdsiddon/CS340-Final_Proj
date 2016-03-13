@@ -1,6 +1,7 @@
 <?php include_once("../../database.php"); ?>
 
 <?php
+ini_set('display_errors', 'On');
 
 $errors = array();      // Place to put errors in.
 $data = array();        // Place to pass back data to client.
@@ -68,14 +69,14 @@ if(!empty($errors)) {
 
 
   // Insert Card Color
-  // foreach ((array)$colors as $color) {
-  //   $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
-  //   $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ($card_insert, (SELECT id FROM fp_color WHERE fp_color.id=$color))");
-  //
-  //   if($result_card_color != 1) {       // An error occured during query.
-  //     break;
-  //   }
-  // }
+  foreach ((array)$colors as $color) {
+    $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
+    $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ($card_insert, (SELECT id FROM fp_color WHERE fp_color.id=$color))");
+
+    if($result_card_color != 1) {       // An error occured during query.
+      break;
+    }
+  }
 
   // Insert Card to an Owner's collection.
   $result_card_collection = mysqli_query($mysqli_handle, "INSERT INTO fp_collection (owner_id, card_id)
