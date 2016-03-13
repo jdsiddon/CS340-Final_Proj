@@ -56,7 +56,7 @@ if(!empty($errors)) {
 
   $card_insert = mysqli_insert_id($mysqli_handle);    // Get last insert.
 
-  // Insert Card Types  
+  // Insert Card Types
   foreach ((array)$types as $type) {
     $type = mysqli_real_escape_string($mysqli_handle, $type);
     $result_card_type = mysqli_query($mysqli_handle, "INSERT INTO fp_card_type (type_id, card_id) VALUES ($type, $card_insert);");
@@ -69,8 +69,8 @@ if(!empty($errors)) {
 
   // Insert Card Color
   foreach ((array)$colors as $color) {
-    $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
-    $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ($card_insert, (SELECT id FROM fp_color WHERE fp_color.id=$color;));");
+    // $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
+    $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ($card_insert, (SELECT id FROM fp_color WHERE fp_color.id=$color;))");
 
     if($result_card_color != 1) {       // An error occured during query.
       break;
@@ -79,7 +79,7 @@ if(!empty($errors)) {
 
   // Insert Card to an Owner's collection.
   $result_card_collection = mysqli_query($mysqli_handle, "INSERT INTO fp_collection (owner_id, card_id)
-    VALUES ('$owner', '$card_insert');");
+    VALUES ($owner', $card_insert);");
 
   if($result_card_collection != 1) {       // An error occured during query.
     break;
