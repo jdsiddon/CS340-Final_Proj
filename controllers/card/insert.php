@@ -51,7 +51,7 @@ if(!empty($errors)) {
 
   // Insert Card
   $query = "INSERT INTO fp_card (name, ability, power, toughness, flavor_text, casting_cost)
-              VALUES ('$name', '$ability', '$power', '$toughness', '$flavor_text', '$casting_cost');";
+              VALUES ('$name', '$ability', $power, $toughness, '$flavor_text', $casting_cost);";
   $result_card = mysqli_query($mysqli_handle, $query);      // Insert the new card.
 
   $card_insert = mysqli_insert_id($mysqli_handle);    // Get last insert.
