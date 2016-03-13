@@ -17,12 +17,12 @@
                   GROUP BY cd.id
                   ORDER BY cd.id desc;";
 
-  $result = mysql_query($query);
+  $result = mysqli_query($query);
 
   $data = array();        // $data is what the view will use.
 
   // Create own array so we have cards with colors.
-  while ($card = mysql_fetch_array($result)) {
+  while ($card = mysqli_fetch_array($result)) {
     $key = $card[id];             // Make key the card id.
     if (!isset($data[$key])) {
       $data[$key] = array();      // Create an array for each individual card.
@@ -37,10 +37,10 @@
       INNER JOIN fp_color as clr ON clr.id = cc.color_id
       WHERE cc.card_id = '$card[id]';";
 
-    $colors = mysql_query($color_query);
+    $colors = mysqli_query($color_query);
 
     // Add colors to card color subarray.
-    while($color = mysql_fetch_array($colors)) {
+    while($color = mysqli_fetch_array($colors)) {
       array_push($card[colors], $color);
     }
 
@@ -53,10 +53,10 @@
       INNER JOIN fp_type AS t on t.id = ct.type_id
       WHERE ct.card_id = '$card[id]';";
 
-    $types = mysql_query($type_query);
+    $types = mysqli_query($type_query);
 
     // Add types to card type subarray.
-    while($type = mysql_fetch_array($types)) {
+    while($type = mysqli_fetch_array($types)) {
       array_push($card[types], $type);
     }
 
@@ -64,6 +64,6 @@
     $data[$key] = $card;
   }
 
-  mysql_close($mysql_handle);
+  mysqli_close($mysqli_handle);
 
 ?>

@@ -16,7 +16,7 @@
         <select class="form-control" name="owner">
         <?php
           // Loop through each color.
-          while ($owner = mysql_fetch_array($owners)) {
+          while ($owner = mysqli_fetch_array($owners)) {
             echo '<option value="'.$owner[id].'">'.$owner[lname].', '.$owner[fname].'</option>';
           }
         ?>

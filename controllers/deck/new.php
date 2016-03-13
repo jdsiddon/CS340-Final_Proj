@@ -8,8 +8,8 @@
 
   // SQL Statement, get all the owners that can own a card from the owners table.
   $query = "SELECT id, fname, lname FROM fp_owner;";
-  $owners = mysql_query($query);
+  $owners = mysqli_query($query);
 
-  mysql_close($mysql_handle);
+  mysqli_close($mysqli_handle);
 
 ?>

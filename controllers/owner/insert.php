@@ -22,12 +22,12 @@ if(!empty($errors)) {
   $fname = $_POST['fname'];
   $lname = $_POST['lname'];
 
-  $fname = mysql_real_escape_string($fname);                      // Clean submitted values.
-  $lname = mysql_real_escape_string($lname);                      // Clean submitted values.
+  $fname = mysqli_real_escape_string($fname);                      // Clean submitted values.
+  $lname = mysqli_real_escape_string($lname);                      // Clean submitted values.
 
   // SQL Statement
   $query = "INSERT INTO fp_owner (fname, lname) VALUES ('$fname', '$lname');";
-  $result = mysql_query($query);
+  $result = mysqli_query($query);
 
   // Insert was successful.
   if($result == 1) {
@@ -47,6 +47,6 @@ if(!empty($errors)) {
 
 
 
-mysql_close($mysql_handle);
+mysqli_close($mysqli_handle);
 
 ?>

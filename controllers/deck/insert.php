@@ -22,18 +22,18 @@ if(!empty($errors)) {
   $name = $_POST['name'];
   $owner = $_POST['owner'];
 
-  $name = mysql_real_escape_string($name);                      // Clean submitted values.
-  $owner = mysql_real_escape_string($owner);
+  $name = mysqli_real_escape_string($name);                      // Clean submitted values.
+  $owner = mysqli_real_escape_string($owner);
 
   // SQL Statement, Insert deck.
   $query = "INSERT INTO fp_deck (name) VALUES ('$name');";
-  $result_deck = mysql_query($query);
+  $result_deck = mysqli_query($query);
 
-  $new_deck_id = mysql_insert_id();         // Get the id of the last inserted Deck.
+  $new_deck_id = mysqli_insert_id();         // Get the id of the last inserted Deck.
 
   // SQL Statement, Insert owner/deck relationship.
   $deck_owner_query = "INSERT INTO fp_deck_owner (deck_id, owner_id) VALUES ('$new_deck_id', '$owner');";
-  $result_deck_owner = mysql_query($deck_owner_query);
+  $result_deck_owner = mysqli_query($deck_owner_query);
 
 
   // Insert was successful.
@@ -54,6 +54,6 @@ if(!empty($errors)) {
 
 
 
-mysql_close($mysql_handle);
+mysqli_close($mysqli_handle);
 
 ?>

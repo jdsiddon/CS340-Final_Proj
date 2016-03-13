@@ -12,7 +12,7 @@
         <select class="form-control" name="owner">
         <?php
           // Loop through each color.
-          while ($owner = mysql_fetch_array($owners)) {
+          while ($owner = mysqli_fetch_array($owners)) {
             echo '<option value="'.$owner[id].'">'.$owner[lname].', '.$owner[fname].'</option>';
           }
         ?>
@@ -29,7 +29,7 @@
         <div class="checkbox" name="colors" id="colors" required>
         <?php
           // Loop through each color.
-          while ($color = mysql_fetch_array($colors)) {
+          while ($color = mysqli_fetch_array($colors)) {
             echo '<label class="checkbox-inline"><input type="checkbox" value="'.$color[id].'" name="color">'.$color[name].'</label>';
           }
         ?>
@@ -41,7 +41,7 @@
         <div class="checkbox" name="types" id="types" required>
         <?php
           // Loop through each type.
-          while ($type = mysql_fetch_array($types)) {
+          while ($type = mysqli_fetch_array($types)) {
             echo '<label class="checkbox-inline"><input type="checkbox" value="'.$type[id].'" name="type">'.$type[name].'</label>';
           }
         ?>
