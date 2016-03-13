@@ -36,7 +36,7 @@
   // Get colors of individual card.
   $color_query = "SELECT clr.name AS card_color, clr.id AS card_color_id FROM fp_card_color AS cc
     INNER JOIN fp_color as clr ON clr.id = cc.color_id
-    WHERE cc.card_id = '$card[id]';";
+    WHERE cc.card_id = '$card[id]'";
 
   $card_colors = mysqli_query($mysqli_handle, $color_query);
 
