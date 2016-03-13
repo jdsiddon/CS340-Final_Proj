@@ -1,6 +1,7 @@
-<?php include_once("../../database.php"); ?>
-
 <?php
+
+include_once("../../database.php");
+
 ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 
