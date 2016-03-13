@@ -56,8 +56,8 @@ if(!empty($errors)) {
 
   $card_insert = mysqli_insert_id($mysqli_handle);    // Get last insert.
 
-  // Insert Card Types
-  foreach ($types as $type) {
+  // Insert Card Types  
+  foreach ((array)$types as $type) {
     $type = mysqli_real_escape_string($mysqli_handle, $type);
     $result_card_type = mysqli_query($mysqli_handle, "INSERT INTO fp_card_type (type_id, card_id) VALUES ($type, $card_insert);");
 
@@ -66,8 +66,9 @@ if(!empty($errors)) {
     }
   }
 
+
   // Insert Card Color
-  foreach ($colors as $color) {
+  foreach ((array)$colors as $color) {
     $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
     $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ($card_insert, (SELECT id FROM fp_color WHERE fp_color.id=$color;));");
 
