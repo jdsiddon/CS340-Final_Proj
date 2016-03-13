@@ -11,7 +11,7 @@
               cd.name AS card_name,
               cd.ability AS card_ability,
               cd.power AS card_power,
-              cd.toughness AS card_power,
+              cd.toughness AS card_toughness,
               cd.flavor_text AS card_flavor_text,
               cd.casting_cost AS card_casting_cost FROM fp_card AS cd
                   GROUP BY cd.id
