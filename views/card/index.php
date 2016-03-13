@@ -18,6 +18,7 @@
         <th>Flavor Text</th>
         <th>Casting Cost</th>
         <th></th>
+        <th></th>
       </tr>
 
     <?php
@@ -64,9 +65,70 @@
           echo   '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit';
           echo  '</a>';
           echo '</td>';
+          echo '<td>';
+          echo  '<a class="btn btn-danger" href="#" value="'.$card[id].'">';
+          echo   '<span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span> Delete';
+          echo  '</a>';
+          echo '</td>';
         echo '</tr>';
       }
     ?>
     </table>
 
 <? include "../footer.php" ?>
+
+
+<script>
+  $(document).ready(function() {
+    // When form is submitted.
+    $( "a.btn-danger" ).click(function() {
+      // get the form data
+      var formData = {
+        'card_id': $(this).attr("value")
+      };
+
+      var route = "<?php echo $controllers; ?>card/delete.php";      // Route to controllers folder.
+
+      // POST form data.
+      $.post( route, formData, function( data ) {
+        var parsedData = JSON.parse(data);
+        location.reload();
+        console.log(parsedData.success);
+
+        if(parsedData.success) {        // Insert was successful.
+          $( ".alert-success" ).html( parsedData.message );     // Set content.
+          $(".alert-success").alert();
+
+          // Fade success away.
+          $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
+            $(".alert-success").alert('close');
+          });
+
+          // Post was successful so clear all form input.
+          for(var i=0; i < form.elements.length; i++){
+            var e = form.elements[i];
+            e.value = '';
+          }
+
+        } else {
+          $( ".alert-danger" ).html( parsedData.message );     // Set content.
+          $(".alert-danger").alert();
+
+          // Fade failure away.
+          $(".alert-danger").fadeTo(2000, 500).slideUp(500, function(){
+            $(".alert-danger").alert('close');
+          });
+        }
+
+      }).fail(function() {        // Total server error.
+        $(".alert-danger").alert();
+        $(".alert-danger").fadeTo(2000, 500).slideUp(500, function(){
+          $(".alert-danger").alert('close');
+        });
+      })
+
+      event.preventDefault();
+    })
+
+  })
+</script>

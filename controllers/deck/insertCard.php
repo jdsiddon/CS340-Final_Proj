@@ -26,6 +26,8 @@ if(!empty($errors)) {
 
   $deck_id = mysql_real_escape_string($deck_id);      // Clean params.
 
+  // Drop all cards in the deck
+  $drop_cards = mysql_query("DELETE FROM fp_deck_card WHERE deck_id='$deck_id';");
 
   // Insert Card Into Deck
   foreach ($cards as $card) {

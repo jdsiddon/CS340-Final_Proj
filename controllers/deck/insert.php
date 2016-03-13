@@ -32,8 +32,8 @@ if(!empty($errors)) {
   $new_deck_id = mysql_insert_id();         // Get the id of the last inserted Deck.
 
   // SQL Statement, Insert owner/deck relationship.
-  $query = "INSERT INTO fp_deck_owner (deck_id, owner_id) VALUES ('$new_deck_id', '$owner');";
-  $result_deck_owner = mysql_query($query);
+  $deck_owner_query = "INSERT INTO fp_deck_owner (deck_id, owner_id) VALUES ('$new_deck_id', '$owner');";
+  $result_deck_owner = mysql_query($deck_owner_query);
 
 
   // Insert was successful.

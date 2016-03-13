@@ -7,7 +7,7 @@
     <h1>Add Cards To: <strong><?php echo $deck[name] ?></strong></h1>
     <form action="/" method="post" id="insert">
 
-      <label for="cards">Cards In Your Collection:</label>
+      <label for="cards">Cards Available in <span class="text-primary"><?php echo $deck_owner[fname].', '.$deck_owner[lname] ?>'s</span> Collection To Add:</label>
       <div class="checkbox" name="cards" id="cards">
         <div class="row">
 
@@ -15,12 +15,19 @@
               // Loop through each color.
               $inc = 1;
               while ($card = mysql_fetch_array($cards)) {
-                if($inc % 6 == 0) {
-                  echo '</div>';             // Start a new row after 6 cards have been on one row.
-                  echo '<div class="row">';
-                }
+                  if($inc % 6 == 0) {
+                    echo '</div>';             // Start a new row after 6 cards have been on one row.
+                    echo '<div class="row">';
+                  }
                 echo '<div class="col-md-2">';
-                echo  '<label class="checkbox-inline"><input type="checkbox" value="'.$card[id].'" name="card">'.$card[name].'</label>';
+                echo  '<label class="checkbox-inline">';
+                if($card[deck_id] == $deck[id]) {
+                  echo   '<input type="checkbox" value="'.$card[id].'" name="card" checked>'.$card[name];
+                } else {
+                  echo   '<input type="checkbox" value="'.$card[id].'" name="card">'.$card[name];
+                }
+
+                echo  '</label>';
                 echo '</div>';
                 $inc++;
               }

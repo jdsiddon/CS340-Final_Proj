@@ -18,9 +18,18 @@
 
   $deck = mysql_fetch_array($result);     // Get deck instance.
 
+  // SQL Statement, get deck owner owner has.
+  $query = "SELECT do.owner_id AS id, o.fname, o.lname FROM fp_deck_owner AS do
+              LEFT JOIN fp_owner AS o ON o.id=do.owner_id;"; // Get deck owner.
+  $deck_owner = mysql_fetch_array(mysql_query($query));
+
 
   // SQL Statement, get cards owner has.
-  $query = "SELECT id, name FROM fp_card;";       // Get deck with id that user requested in url string.
+  $query = "SELECT c.id, c.name, dc.deck_id, cl.owner_id FROM fp_card AS c
+              LEFT JOIN fp_deck_card AS dc ON dc.card_id=c.id
+              LEFT JOIN fp_collection AS cl ON cl.card_id=c.id
+              WHERE cl.owner_id='$deck_owner[id]'
+              GROUP BY c.id;";       // Get deck with id that user requested in url string.
   $cards = mysql_query($query);
 
 

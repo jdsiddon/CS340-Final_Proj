@@ -38,18 +38,12 @@ CREATE TABLE fp_collection (
   id INT NOT NULL AUTO_INCREMENT,
   owner_id INT NOT NULL,
   card_id INT NOT NULL,
-  FOREIGN KEY(owner_id) REFERENCES fp_owner(id),
-  FOREIGN KEY(card_id) REFERENCES fp_card(id),
-  PRIMARY KEY(id)
-);
-
--- Create card to collection relation
-CREATE TABLE fp_card_collection(
-  id INT NOT NULL AUTO_INCREMENT,
-  color_id INT NOT NULL,
-  card_id INT NOT NULL,
-  FOREIGN KEY ( color_id ) REFERENCES fp_color( id ),
-  FOREIGN KEY ( card_id ) REFERENCES fp_card( id ),
+  FOREIGN KEY(owner_id)
+    REFERENCES fp_owner(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY(card_id)
+    REFERENCES fp_card(id)
+    ON DELETE CASCADE,
   PRIMARY KEY(id)
 );
 
@@ -65,8 +59,26 @@ CREATE TABLE fp_card_type (
   id INT NOT NULL AUTO_INCREMENT,
   type_id INT NOT NULL,
   card_id INT NOT NULL,
-  FOREIGN KEY(type_id) REFERENCES fp_type(id),
-  FOREIGN KEY(card_id) REFERENCES fp_card(id),
+  FOREIGN KEY(type_id)
+    REFERENCES fp_type(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY(card_id)
+    REFERENCES fp_card(id)
+    ON DELETE CASCADE,
+  PRIMARY KEY(id)
+);
+
+-- Create card to color relation
+CREATE TABLE fp_card_color (
+  id INT NOT NULL AUTO_INCREMENT,
+  color_id INT NOT NULL,
+  card_id INT NOT NULL,
+  FOREIGN KEY(color_id)
+    REFERENCES fp_color(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY(card_id)
+    REFERENCES fp_card(id)
+    ON DELETE CASCADE,
   PRIMARY KEY(id)
 );
 
@@ -83,8 +95,13 @@ CREATE TABLE fp_deck_card (
   id INT NOT NULL AUTO_INCREMENT,
   deck_id INT NOT NULL,
   card_id INT NOT NULL,
-  FOREIGN KEY(deck_id) REFERENCES fp_deck(id),
-  FOREIGN KEY(card_id) REFERENCES fp_card(id),
+  FOREIGN KEY(deck_id)
+    REFERENCES fp_deck(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY(card_id)
+    REFERENCES fp_card(id)
+    ON DELETE CASCADE,
+  CONSTRAINT UNIQUE (deck_id, card_id),
   PRIMARY KEY(id)
 );
 
@@ -94,7 +111,11 @@ CREATE TABLE fp_deck_owner (
   id INT NOT NULL AUTO_INCREMENT,
   deck_id INT NOT NULL,
   owner_id INT NOT NULL,
-  FOREIGN KEY(deck_id) REFERENCES fp_deck(id),
-  FOREIGN KEY(owner_id) REFERENCES fp_owner(id),
+  FOREIGN KEY(deck_id)
+    REFERENCES fp_deck(id)
+    ON DELETE CASCADE,
+  FOREIGN KEY(owner_id)
+    REFERENCES fp_owner(id)
+    ON DELETE CASCADE,
   PRIMARY KEY(id)
 );
