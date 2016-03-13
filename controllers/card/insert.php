@@ -89,7 +89,7 @@ if(!empty($errors)) {
 
 
   // Make sure all inserts were successful.
-  if($result_card == 1 || $result_card_type == 1 || $result_card_type == 1 || $result_card_collection == 1) {
+  if($result_card == 1 && $result_card_type == 1 && $result_card_type == 1 && $result_card_collection == 1) {
     $data['success'] = true;
     $data['message'] = 'Success!';
 
