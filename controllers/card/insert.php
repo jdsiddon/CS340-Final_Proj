@@ -79,8 +79,15 @@ if(!empty($errors)) {
   //     break;
   //   }
   // }
-  $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES (1, 2);");
-  $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES (1, (SELECT id FROM fp_color WHERE fp_color.id=$color limit=1));");
+
+  $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id)
+    SELECT
+    1 AS card_id,
+    id AS color_id
+    FROM fp_color
+    WHERE id=$color
+    ");
+  // $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES (1, SELECT id AS card_id FROM fp_color AS c WHERE fp_color.id=$color limit=1));");
 
   // Insert Card to an Owner's collection.
   $result_card_collection = mysqli_query($mysqli_handle, "INSERT INTO fp_collection (owner_id, card_id) VALUES ($owner, $card_insert);");
