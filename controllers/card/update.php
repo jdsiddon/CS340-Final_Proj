@@ -44,14 +44,14 @@ if(!empty($errors)) {
   $flavor_text = $_POST['flavor_text'];
   $casting_cost = $_POST['casting_cost'];
 
-  $card_id = mysqli_real_escape_string($card_id);
-  $owner = mysqli_real_escape_string($owner);
-  $name = mysqli_real_escape_string($name);                      // Clean submitted values.
-  $ability = mysqli_real_escape_string($ability);
-  $power = mysqli_real_escape_string($power);
-  $toughness = mysqli_real_escape_string($toughness);
-  $flavor_text = mysqli_real_escape_string($flavor_text);
-  $casting_cost = mysqli_real_escape_string($casting_cost);
+  $card_id = mysqli_real_escape_string($mysqli_handle, $card_id);
+  $owner = mysqli_real_escape_string($mysqli_handle, $owner);
+  $name = mysqli_real_escape_string($mysqli_handle, $name);                      // Clean submitted values.
+  $ability = mysqli_real_escape_string($mysqli_handle, $ability);
+  $power = mysqli_real_escape_string($mysqli_handle, $power);
+  $toughness = mysqli_real_escape_string($mysqli_handle, $toughness);
+  $flavor_text = mysqli_real_escape_string($mysqli_handle, $flavor_text);
+  $casting_cost = mysqli_real_escape_string($mysqli_handle, $casting_cost);
 
   // Update Card
   $query = "UPDATE fp_card
@@ -65,7 +65,7 @@ if(!empty($errors)) {
   $existing_types = mysqli_query($mysqli_handle, "DELETE FROM fp_card_type WHERE card_id=$card_id;");
 
   foreach ($types as $type) {
-    $type = mysqli_real_escape_string($type);
+    $type = mysqli_real_escape_string($mysqli_handle, $type);
     $result_card_type = mysqli_query($mysqli_handle, "INSERT INTO fp_card_type (type_id, card_id) VALUES ('$type', '$card_id');");
 
     if($result_card_type != 1) {        // An error occured on insert.
@@ -78,7 +78,7 @@ if(!empty($errors)) {
 
   // Insert Card Color
   foreach ($colors as $color) {
-    $color = mysqli_real_escape_string($color);      // Clean string.
+    $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
     $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ('$card_id',
       (SELECT id FROM fp_color WHERE fp_color.id='".$color."')
     );");

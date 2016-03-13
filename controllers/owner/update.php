@@ -25,9 +25,9 @@ if(!empty($errors)) {
   $owner_fname = $_POST['fname'];
   $owner_lname = $_POST['lname'];
 
-  $owner_id = mysqli_real_escape_string($owner_id);
-  $owner_fname = mysqli_real_escape_string($owner_fname);
-  $owner_lname = mysqli_real_escape_string($owner_lname);
+  $owner_id = mysqli_real_escape_string($mysqli_handle, $owner_id);
+  $owner_fname = mysqli_real_escape_string($mysqli_handle, $owner_fname);
+  $owner_lname = mysqli_real_escape_string($mysqli_handle, $owner_lname);
 
   // Update Card
   $query = "UPDATE fp_owner

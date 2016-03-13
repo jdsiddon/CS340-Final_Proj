@@ -13,7 +13,7 @@ if(empty($_POST['owner']))
 if(empty($_POST['name']))
   $errors['name'] = 'Name required';
 if(empty($_POST['colors']))
-  $errors['color'] = 'Color required';
+  $errors['colors'] = 'Color required';
 if(empty($_POST['types']))
   $errors['types'] = 'Type required';
 if(empty($_POST['ability']))
@@ -41,50 +41,48 @@ if(!empty($errors)) {
   $flavor_text = $_POST['flavor_text'];
   $casting_cost = $_POST['casting_cost'];
 
-  $owner = mysqli_real_escape_string($owner);
-  $name = mysqli_real_escape_string($name);                      // Clean submitted values.
-  $ability = mysqli_real_escape_string($ability);
-  $power = mysqli_real_escape_string($power);
-  $toughness = mysqli_real_escape_string($toughness);
-  $flavor_text = mysqli_real_escape_string($flavor_text);
-  $casting_cost = mysqli_real_escape_string($casting_cost);
+  $owner = mysqli_real_escape_string($mysqli_handle, $owner);
+  $name = mysqli_real_escape_string($mysqli_handle, $name);                      // Clean submitted values.
+  $ability = mysqli_real_escape_string($mysqli_handle, $ability);
+  $power = mysqli_real_escape_string($mysqli_handle, $power);
+  $toughness = mysqli_real_escape_string($mysqli_handle, $toughness);
+  $flavor_text = mysqli_real_escape_string($mysqli_handle, $flavor_text);
+  $casting_cost = mysqli_real_escape_string($mysqli_handle, $casting_cost);
 
   // Insert Card
   $query = "INSERT INTO fp_card (name, ability, power, toughness, flavor_text, casting_cost)
               VALUES ('$name', '$ability', '$power', '$toughness', '$flavor_text', '$casting_cost');";
   $result_card = mysqli_query($mysqli_handle, $query);      // Insert the new card.
 
-  $card_insert = mysqli_insert_id();    // Get last insert.
+  $card_insert = mysqli_insert_id($mysqli_handle);    // Get last insert.
 
   // Insert Card Types
   foreach ($types as $type) {
-    $type = mysqli_real_escape_string($type);
+    $type = mysqli_real_escape_string($mysqli_handle, $type);
     $result_card_type = mysqli_query($mysqli_handle, "INSERT INTO fp_card_type (type_id, card_id) VALUES ('$type', '$card_insert');");
 
     if($result_card_type != 1) {        // An error occured on insert.
       break;
     }
   }
-  //
+
   // Insert Card Color
   foreach ($colors as $color) {
-    $color = mysqli_real_escape_string($color);      // Clean string.
-    $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ('$card_insert',
-      (SELECT id FROM fp_color WHERE fp_color.id='$color')
-    );");
+    $color = mysqli_real_escape_string($mysqli_handle, $color);      // Clean string.
+    $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ('$card_insert', (SELECT id FROM fp_color WHERE fp_color.id='$color';));");
 
     if($result_card_color != 1) {       // An error occured during query.
       break;
     }
   }
-  //
+
   // Insert Card to an Owner's collection.
   $result_card_collection = mysqli_query($mysqli_handle, "INSERT INTO fp_collection (owner_id, card_id)
     VALUES ('$owner', '$card_insert');");
 
-  // if($result_card_collection != 1) {       // An error occured during query.
-  //   break;
-  // }
+  if($result_card_collection != 1) {       // An error occured during query.
+    break;
+  }
 
 
   // Make sure all inserts were successful.

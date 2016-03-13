@@ -18,7 +18,7 @@ if(!empty($errors)) {
 } else {          // No errors so process form.
 
   $name = $_POST['name'];
-  $name = mysqli_real_escape_string($name);                      // Clean submitted values.
+  $name = mysqli_real_escape_string($mysqli_handle, $name);                      // Clean submitted values.
 
   // SQL Statement
   $query = "INSERT INTO fp_type (name) VALUES ('$name');";

@@ -22,8 +22,8 @@ if(!empty($errors)) {
   $name = $_POST['name'];
   $owner = $_POST['owner'];
 
-  $name = mysqli_real_escape_string($name);                      // Clean submitted values.
-  $owner = mysqli_real_escape_string($owner);
+  $name = mysqli_real_escape_string($mysqli_handle, $name);                      // Clean submitted values.
+  $owner = mysqli_real_escape_string($mysqli_handle, $owner);
 
   // SQL Statement, Insert deck.
   $query = "INSERT INTO fp_deck (name) VALUES ('$name');";

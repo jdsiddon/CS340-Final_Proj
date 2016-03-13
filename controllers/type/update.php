@@ -20,8 +20,8 @@ if(!empty($errors)) {
   $type_id = $_POST['id'];
   $type_name = $_POST['name'];
 
-  $type_id = mysqli_real_escape_string($type_id);
-  $type_name = mysqli_real_escape_string($type_name);
+  $type_id = mysqli_real_escape_string($mysqli_handle, $type_id);
+  $type_name = mysqli_real_escape_string($mysqli_handle, $type_name);
 
   // Update Card
   $query = "UPDATE fp_type

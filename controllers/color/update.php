@@ -20,8 +20,8 @@ if(!empty($errors)) {
   $color_id = $_POST['id'];
   $color_name = $_POST['name'];
 
-  $color_id = mysqli_real_escape_string($color_id);
-  $color_name = mysqli_real_escape_string($color_name);
+  $color_id = mysqli_real_escape_string($mysqli_handle, $color_id);
+  $color_name = mysqli_real_escape_string($mysqli_handle, $color_name);
 
   // Update Card
   $query = "UPDATE fp_color

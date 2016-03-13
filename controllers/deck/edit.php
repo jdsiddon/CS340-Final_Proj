@@ -7,7 +7,7 @@
 
   // The deck to add cards to is in the get parameters of the url 'http://localhost:8888/Final_Project/views/deck/edit.php?id=XX'.
   if (isset($_GET['id'])) {
-    $deck_id = mysqli_escape_string($_GET['id']);
+    $deck_id = mysqli_escape_string($mysqli_handle, $_GET['id']);
   } else{
     $deck_id = 0;
   }
