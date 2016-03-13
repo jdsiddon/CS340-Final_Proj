@@ -8,15 +8,15 @@
 
   // SQL Statement, get all the colors from the color table.
   $query = "SELECT id, name FROM fp_color;";
-  $colors = mysqli_query($query);
+  $colors = mysqli_query($mysqli_handle, $query);
 
   // SQL Statement, get all the types from the type table.
   $query = "SELECT id, name FROM fp_type;";
-  $types = mysqli_query($query);
+  $types = mysqli_query($mysqli_handle, $query);
 
   // SQL Statement, get all the owners that can own a card from the owners table.
   $query = "SELECT id, fname, lname FROM fp_owner;";
-  $owners = mysqli_query($query);
+  $owners = mysqli_query($mysqli_handle, $query);
 
   mysqli_close($mysqli_handle);
 

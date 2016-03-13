@@ -12,9 +12,9 @@
   $dbuser = 'root';
   $dbpass = 'root';
 
-  $mysqli_handle = mysqli_connect($dbhost, $dbuser, $dbpass)
+  $mysqli_handle = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)
     or die("Error connecting to database server");
 
-  mysqli_select_db($dbname, $mysqli_handle)	or die("Error selecting database: $dbname");        // Select database.
+  // mysqli_select_db($dbname, $mysqli_handle)	or die("Error selecting database: $dbname");        // Select database.
 
 ?>

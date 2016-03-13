@@ -7,7 +7,7 @@
 
   // SQL Statement
   $query = "SELECT id, name FROM fp_color;";
-  $result = mysqli_query($query);
+  $result = mysqli_query($mysqli_handle, $query);
 
   mysqli_close($mysqli_handle);
 

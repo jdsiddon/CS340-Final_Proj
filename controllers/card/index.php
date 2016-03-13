@@ -17,7 +17,7 @@
                   GROUP BY cd.id
                   ORDER BY cd.id desc;";
 
-  $result = mysqli_query($query);
+  $result = mysqli_query($mysqli_handle, $query);
 
   $data = array();        // $data is what the view will use.
 
@@ -37,7 +37,7 @@
       INNER JOIN fp_color as clr ON clr.id = cc.color_id
       WHERE cc.card_id = '$card[id]';";
 
-    $colors = mysqli_query($color_query);
+    $colors = mysqli_query($mysqli_handle, $color_query);
 
     // Add colors to card color subarray.
     while($color = mysqli_fetch_array($colors)) {
@@ -53,7 +53,7 @@
       INNER JOIN fp_type AS t on t.id = ct.type_id
       WHERE ct.card_id = '$card[id]';";
 
-    $types = mysqli_query($type_query);
+    $types = mysqli_query($mysqli_handle, $type_query);
 
     // Add types to card type subarray.
     while($type = mysqli_fetch_array($types)) {

@@ -28,7 +28,7 @@ if(!empty($errors)) {
               SET name='$color_name'
               WHERE id=$color_id;";
 
-  $result_color = mysqli_query($query);      // Insert the new card.
+  $result_color = mysqli_query($mysqli_handle, $query);      // Insert the new card.
 
   if($result_color == 1) {
     $data['success'] = true;

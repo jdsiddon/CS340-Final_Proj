@@ -22,7 +22,7 @@ if(!empty($errors)) {
 
   // SQL Statement
   $query = "INSERT INTO fp_type (name) VALUES ('$name');";
-  $result = mysqli_query($query);
+  $result = mysqli_query($mysqli_handle, $query);
 
   // Insert was successful.
   if($result == 1) {

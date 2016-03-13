@@ -14,14 +14,14 @@
 
   // SQL Statement, get deck
   $query = "SELECT id, name FROM fp_deck WHERE fp_deck.id = '$deck_id' limit 1;";       // Get deck with id that user requested in url string.
-  $result = mysqli_query($query);
+  $result = mysqli_query($mysqli_handle, $query);
 
   $deck = mysqli_fetch_array($result);     // Get deck instance.
 
   // SQL Statement, get deck owner owner has.
   $query = "SELECT do.owner_id AS id, o.fname, o.lname FROM fp_deck_owner AS do
               LEFT JOIN fp_owner AS o ON o.id=do.owner_id;"; // Get deck owner.
-  $deck_owner = mysqli_fetch_array(mysqli_query($query));
+  $deck_owner = mysqli_fetch_array(mysqli_query($mysqli_handle, $query));
 
 
   // SQL Statement, get cards owner has.
@@ -30,7 +30,7 @@
               LEFT JOIN fp_collection AS cl ON cl.card_id=c.id
               WHERE cl.owner_id='$deck_owner[id]'
               GROUP BY c.id;";       // Get deck with id that user requested in url string.
-  $cards = mysqli_query($query);
+  $cards = mysqli_query($mysqli_handle, $query);
 
 
 

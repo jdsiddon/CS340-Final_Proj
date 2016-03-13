@@ -28,7 +28,7 @@ if(!empty($errors)) {
               SET name='$type_name'
               WHERE id=$type_id;";
 
-  $result_type = mysqli_query($query);      // Insert the new card.
+  $result_type = mysqli_query($mysqli_handle, $query);      // Insert the new card.
 
   if($result_type == 1) {
     $data['success'] = true;

@@ -14,7 +14,7 @@
 
   // Update Card in Owner's collection.
   $query = "SELECT id, name FROM fp_color WHERE id=$color_id limit 1;";
-  $result = mysqli_query($query);
+  $result = mysqli_query($mysqli_handle, $query);
   $color = mysqli_fetch_array($result);
 
 

@@ -52,39 +52,39 @@ if(!empty($errors)) {
   // Insert Card
   $query = "INSERT INTO fp_card (name, ability, power, toughness, flavor_text, casting_cost)
               VALUES ('$name', '$ability', '$power', '$toughness', '$flavor_text', '$casting_cost');";
-  $result_card = mysqli_query($query);      // Insert the new card.
+  $result_card = mysqli_query($mysqli_handle, $query);      // Insert the new card.
 
   $card_insert = mysqli_insert_id();    // Get last insert.
 
   // Insert Card Types
   foreach ($types as $type) {
     $type = mysqli_real_escape_string($type);
-    $result_card_type = mysqli_query("INSERT INTO fp_card_type (type_id, card_id) VALUES ('$type', '$card_insert');");
+    $result_card_type = mysqli_query($mysqli_handle, "INSERT INTO fp_card_type (type_id, card_id) VALUES ('$type', '$card_insert');");
 
     if($result_card_type != 1) {        // An error occured on insert.
       break;
     }
   }
-
+  //
   // Insert Card Color
   foreach ($colors as $color) {
     $color = mysqli_real_escape_string($color);      // Clean string.
-    $result_card_color = mysqli_query("INSERT INTO fp_card_color (card_id, color_id) VALUES ('$card_insert',
-      (SELECT id FROM fp_color WHERE fp_color.id='".$color."')
+    $result_card_color = mysqli_query($mysqli_handle, "INSERT INTO fp_card_color (card_id, color_id) VALUES ('$card_insert',
+      (SELECT id FROM fp_color WHERE fp_color.id='$color')
     );");
 
     if($result_card_color != 1) {       // An error occured during query.
       break;
     }
   }
-
+  //
   // Insert Card to an Owner's collection.
-  $result_card_collection = mysqli_query("INSERT INTO fp_collection (owner_id, card_id)
+  $result_card_collection = mysqli_query($mysqli_handle, "INSERT INTO fp_collection (owner_id, card_id)
     VALUES ('$owner', '$card_insert');");
 
-  if($result_card_collection != 1) {       // An error occured during query.
-    break;
-  }
+  // if($result_card_collection != 1) {       // An error occured during query.
+  //   break;
+  // }
 
 
   // Make sure all inserts were successful.

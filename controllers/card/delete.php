@@ -14,7 +14,7 @@
 
   // Update Card in Owner's collection.
   $query = "DELETE FROM fp_card WHERE id='$card_id';";
-  $result = mysqli_query($query);
+  $result = mysqli_query($mysqli_handle, $query);
 
 
   // Insert was successful.

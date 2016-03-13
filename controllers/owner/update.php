@@ -34,7 +34,7 @@ if(!empty($errors)) {
               SET fname='$owner_fname', lname='$owner_lname'
               WHERE id=$owner_id;";
 
-  $result_owner = mysqli_query($query);      // Insert the new card.
+  $result_owner = mysqli_query($mysqli_handle, $query);      // Insert the new card.
 
   if($result_owner == 1) {
     $data['success'] = true;
