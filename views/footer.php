@@ -1,5 +1,5 @@
   </div> <!-- end .container -->
-  <script src="/Final_Project/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/~siddonj/cs340/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
 
