@@ -2,6 +2,7 @@
 
 <?php
 ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
 
 $errors = array();      // Place to put errors in.
 $data = array();        // Place to pass back data to client.
