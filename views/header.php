@@ -11,12 +11,12 @@
 
     <title>CS 340 - Final</title>
 
-    <link rel="stylesheet" href="/Final_Project/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/~siddonj/cs340/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- My custom CSS -->
-    <link rel="stylesheet" href="/Final_Project/css/custom.css">
+    <link rel="stylesheet" href="/~siddonj/cs340/css/custom.css">
     <!-- include jQuery -->
-    <script src="/Final_Project/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/~siddonj/cs340/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -25,7 +25,6 @@
     <![endif]-->
   </head>
 
-  <!-- <body class="<?php if(array_pop(explode("/", $_SERVER['REQUEST_URI'])) == "index.php"){ echo 'homepage'; }; ?>"> -->
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
@@ -36,28 +35,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/Final_Project/views/card/index.php">MTG Collection Manager</a>
+          <a class="navbar-brand" href="/~siddonj/cs340/views/card/index.php">MTG Collection Manager</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Insert <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/Final_Project/views/card/insert.php">Card</a></li>
-                <li><a href="/Final_Project/views/deck/insert.php">Deck</a></li>
-                <li><a href="/Final_Project/views/color/insert.php">Color</a></li>
-                <li><a href="/Final_Project/views/type/insert.php">Type</a></li>
-                <li><a href="/Final_Project/views/owner/insert.php">Owner</a></li>
+                <li><a href="/~siddonj/cs340/views/card/insert.php">Card</a></li>
+                <li><a href="/~siddonj/cs340/views/deck/insert.php">Deck</a></li>
+                <li><a href="/~siddonj/cs340/views/color/insert.php">Color</a></li>
+                <li><a href="/~siddonj/cs340/views/type/insert.php">Type</a></li>
+                <li><a href="/~siddonj/cs340/views/owner/insert.php">Owner</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="/Final_Project/views/card/index.php">Card</a></li>
-                <li><a href="/Final_Project/views/deck/index.php">Deck</a></li>
-                <li><a href="/Final_Project/views/color/index.php">Color</a></li>
-                <li><a href="/Final_Project/views/type/index.php">Type</a></li>
-                <li><a href="/Final_Project/views/owner/index.php">Owner</a></li>
+                <li><a href="/~siddonj/cs340/views/card/index.php">Card</a></li>
+                <li><a href="/~siddonj/cs340/views/deck/index.php">Deck</a></li>
+                <li><a href="/~siddonj/cs340/views/color/index.php">Color</a></li>
+                <li><a href="/~siddonj/cs340/views/type/index.php">Type</a></li>
+                <li><a href="/~siddonj/cs340/views/owner/index.php">Owner</a></li>
               </ul>
             </li>
           </ul>
