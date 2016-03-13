@@ -4,14 +4,6 @@ CREATE TABLE fp_color (
   name VARCHAR(255),
   PRIMARY KEY(id)
 );
---
--- INSERT INTO  `siddonj-db`.`fp_color` (
--- `id` ,
--- `name`
--- )
--- VALUES (
--- NULL ,  'red'
--- );
 
 -- Create card table.
 CREATE TABLE fp_card (
