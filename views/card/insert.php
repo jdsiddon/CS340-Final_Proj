@@ -115,6 +115,7 @@
       console.log(formData);
       // POST form data.
       $.post( route, formData, function( data ) {
+        console.log(data);
         parsedData = JSON.parse(data);
 
         console.log(parsedData.success);
