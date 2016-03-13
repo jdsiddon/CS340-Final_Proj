@@ -60,14 +60,14 @@ if(!empty($errors)) {
   $card_insert = mysqli_insert_id($mysqli_handle);    // Get last insert.
 
   // Insert Card Types
-  // foreach ((array)$types as $type) {
-  //   $type = mysqli_real_escape_string($mysqli_handle, $type);
-  //   $result_card_type = mysqli_query($mysqli_handle, "INSERT INTO fp_card_type (type_id, card_id) VALUES ($type, $card_insert);");
-  //
-  //   if($result_card_type != 1) {        // An error occured on insert.
-  //     break;
-  //   }
-  // }
+  foreach ((array)$types as $type) {
+    $type = mysqli_real_escape_string($mysqli_handle, $type);
+    $result_card_type = mysqli_query($mysqli_handle, "INSERT INTO fp_card_type (type_id, card_id) VALUES ($type, $card_insert);");
+
+    if($result_card_type != 1) {        // An error occured on insert.
+      break;
+    }
+  }
 
 
   // Insert Card Color
