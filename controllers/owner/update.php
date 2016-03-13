@@ -25,16 +25,16 @@ if(!empty($errors)) {
   $owner_fname = $_POST['fname'];
   $owner_lname = $_POST['lname'];
 
-  $owner_id = mysql_real_escape_string($owner_id);
-  $owner_fname = mysql_real_escape_string($owner_fname);
-  $owner_lname = mysql_real_escape_string($owner_lname);
+  $owner_id = mysqli_real_escape_string($owner_id);
+  $owner_fname = mysqli_real_escape_string($owner_fname);
+  $owner_lname = mysqli_real_escape_string($owner_lname);
 
   // Update Card
   $query = "UPDATE fp_owner
               SET fname='$owner_fname', lname='$owner_lname'
               WHERE id=$owner_id;";
 
-  $result_owner = mysql_query($query);      // Insert the new card.
+  $result_owner = mysqli_query($query);      // Insert the new card.
 
   if($result_owner == 1) {
     $data['success'] = true;
@@ -50,6 +50,6 @@ if(!empty($errors)) {
   echo json_encode($data);        // Send back to client.
 }
 
-mysql_close($mysql_handle);
+mysqli_close($mysqli_handle);
 
 ?>

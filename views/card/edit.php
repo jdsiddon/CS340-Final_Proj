@@ -21,7 +21,7 @@
         <select class="form-control" name="owner">
         <?php
           // Loop through each color.
-          while ($owner = mysql_fetch_array($owners)) {
+          while ($owner = mysqli_fetch_array($owners)) {
             echo '<option value="'.$owner[id].'"';
             if($owner[id] == $card[card_owner]) {
               echo 'selected';
@@ -37,7 +37,7 @@
         <div class="checkbox" name="colors" id="colors" required>
         <?php
           // Loop through each color, if available color is same as set color of card, make it checked.
-          while($color = mysql_fetch_array($colors)) {
+          while($color = mysqli_fetch_array($colors)) {
             echo '<label class="checkbox-inline"><input type="checkbox" value="'.$color[id].'" name="color" ';
             foreach ($card[colors] as $k => $cc) {
               if($color[id] == $cc[card_color_id]) {
@@ -55,7 +55,7 @@
         <div class="checkbox" name="types" id="types" required>
         <?php
           // Loop through each type, if available type is same as set type of card, make it checked.
-          while ($type = mysql_fetch_array($types)) {
+          while ($type = mysqli_fetch_array($types)) {
             echo '<label class="checkbox-inline"><input type="checkbox" value="'.$type[id].'" name="type" ';
             foreach ($card[types] as $k => $ct) {
               if($type[id] == $ct[card_type_id]) {

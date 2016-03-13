@@ -7,8 +7,8 @@
 
   // SQL Statement
   $query = "SELECT id, name FROM fp_deck;";
-  $result = mysql_query($query);
+  $result = mysqli_query($query);
 
-  mysql_close($mysql_handle);
+  mysqli_close($mysqli_handle);
 
 ?>

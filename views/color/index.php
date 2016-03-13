@@ -14,7 +14,7 @@
       </tr>
 
     <?php
-      while ($row = mysql_fetch_array($result)) {
+      while ($row = mysqli_fetch_array($result)) {
         echo '<tr>';
           echo '<td>'.$row[id].'</td>';
           echo '<td>'.$row[name].'</td>';

@@ -24,15 +24,15 @@ if(!empty($errors)) {
   $deck_id = $_POST['deck_id'];      // Clean params.
   $cards = json_decode($_POST['cards']);
 
-  $deck_id = mysql_real_escape_string($deck_id);      // Clean params.
+  $deck_id = mysqli_real_escape_string($deck_id);      // Clean params.
 
   // Drop all cards in the deck
-  $drop_cards = mysql_query("DELETE FROM fp_deck_card WHERE deck_id='$deck_id';");
+  $drop_cards = mysqli_query("DELETE FROM fp_deck_card WHERE deck_id='$deck_id';");
 
   // Insert Card Into Deck
   foreach ($cards as $card) {
-    $card = mysql_real_escape_string($card);
-    $result_card = mysql_query("INSERT INTO fp_deck_card (deck_id, card_id) VALUES ('$deck_id', '$card');");
+    $card = mysqli_real_escape_string($card);
+    $result_card = mysqli_query("INSERT INTO fp_deck_card (deck_id, card_id) VALUES ('$deck_id', '$card');");
 
     if($result_card != 1) {        // An error occured on insert.
       break;
@@ -56,6 +56,6 @@ if(!empty($errors)) {
 
 }
 
-mysql_close($mysql_handle);
+mysqli_close($mysqli_handle);
 
 ?>

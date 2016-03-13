@@ -20,15 +20,15 @@ if(!empty($errors)) {
   $color_id = $_POST['id'];
   $color_name = $_POST['name'];
 
-  $color_id = mysql_real_escape_string($color_id);
-  $color_name = mysql_real_escape_string($color_name);
+  $color_id = mysqli_real_escape_string($color_id);
+  $color_name = mysqli_real_escape_string($color_name);
 
   // Update Card
   $query = "UPDATE fp_color
               SET name='$color_name'
               WHERE id=$color_id;";
 
-  $result_color = mysql_query($query);      // Insert the new card.
+  $result_color = mysqli_query($query);      // Insert the new card.
 
   if($result_color == 1) {
     $data['success'] = true;
@@ -44,6 +44,6 @@ if(!empty($errors)) {
   echo json_encode($data);        // Send back to client.
 }
 
-mysql_close($mysql_handle);
+mysqli_close($mysqli_handle);
 
 ?>

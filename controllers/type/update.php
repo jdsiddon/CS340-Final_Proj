@@ -20,15 +20,15 @@ if(!empty($errors)) {
   $type_id = $_POST['id'];
   $type_name = $_POST['name'];
 
-  $type_id = mysql_real_escape_string($type_id);
-  $type_name = mysql_real_escape_string($type_name);
+  $type_id = mysqli_real_escape_string($type_id);
+  $type_name = mysqli_real_escape_string($type_name);
 
   // Update Card
   $query = "UPDATE fp_type
               SET name='$type_name'
               WHERE id=$type_id;";
 
-  $result_type = mysql_query($query);      // Insert the new card.
+  $result_type = mysqli_query($query);      // Insert the new card.
 
   if($result_type == 1) {
     $data['success'] = true;
@@ -44,6 +44,6 @@ if(!empty($errors)) {
   echo json_encode($data);        // Send back to client.
 }
 
-mysql_close($mysql_handle);
+mysqli_close($mysqli_handle);
 
 ?>

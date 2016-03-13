@@ -44,29 +44,29 @@ if(!empty($errors)) {
   $flavor_text = $_POST['flavor_text'];
   $casting_cost = $_POST['casting_cost'];
 
-  $card_id = mysql_real_escape_string($card_id);
-  $owner = mysql_real_escape_string($owner);
-  $name = mysql_real_escape_string($name);                      // Clean submitted values.
-  $ability = mysql_real_escape_string($ability);
-  $power = mysql_real_escape_string($power);
-  $toughness = mysql_real_escape_string($toughness);
-  $flavor_text = mysql_real_escape_string($flavor_text);
-  $casting_cost = mysql_real_escape_string($casting_cost);
+  $card_id = mysqli_real_escape_string($card_id);
+  $owner = mysqli_real_escape_string($owner);
+  $name = mysqli_real_escape_string($name);                      // Clean submitted values.
+  $ability = mysqli_real_escape_string($ability);
+  $power = mysqli_real_escape_string($power);
+  $toughness = mysqli_real_escape_string($toughness);
+  $flavor_text = mysqli_real_escape_string($flavor_text);
+  $casting_cost = mysqli_real_escape_string($casting_cost);
 
   // Update Card
   $query = "UPDATE fp_card
               SET name='$name', ability='$ability', power='$power', toughness='$toughness', flavor_text='$flavor_text', casting_cost='$casting_cost'
               WHERE id=$card_id;";
 
-  $result_card = mysql_query($query);      // Insert the new card.
+  $result_card = mysqli_query($query);      // Insert the new card.
 
 
   // Delete existing Card Types
-  $existing_types = mysql_query("DELETE FROM fp_card_type WHERE card_id=$card_id;");
+  $existing_types = mysqli_query("DELETE FROM fp_card_type WHERE card_id=$card_id;");
 
   foreach ($types as $type) {
-    $type = mysql_real_escape_string($type);
-    $result_card_type = mysql_query("INSERT INTO fp_card_type (type_id, card_id) VALUES ('$type', '$card_id');");
+    $type = mysqli_real_escape_string($type);
+    $result_card_type = mysqli_query("INSERT INTO fp_card_type (type_id, card_id) VALUES ('$type', '$card_id');");
 
     if($result_card_type != 1) {        // An error occured on insert.
       break;
@@ -74,12 +74,12 @@ if(!empty($errors)) {
   }
 
   // Delete existing Card colors
-  $existing_colors = mysql_query("DELETE FROM fp_card_color WHERE card_id=$card_id;");
+  $existing_colors = mysqli_query("DELETE FROM fp_card_color WHERE card_id=$card_id;");
 
   // Insert Card Color
   foreach ($colors as $color) {
-    $color = mysql_real_escape_string($color);      // Clean string.
-    $result_card_color = mysql_query("INSERT INTO fp_card_color (card_id, color_id) VALUES ('$card_id',
+    $color = mysqli_real_escape_string($color);      // Clean string.
+    $result_card_color = mysqli_query("INSERT INTO fp_card_color (card_id, color_id) VALUES ('$card_id',
       (SELECT id FROM fp_color WHERE fp_color.id='".$color."')
     );");
 
@@ -89,7 +89,7 @@ if(!empty($errors)) {
   }
 
   // Update Card in Owner's collection.
-  $result_card_collection = mysql_query("UPDATE fp_collection
+  $result_card_collection = mysqli_query("UPDATE fp_collection
                                           SET owner_id='$owner'
                                           WHERE card_id=$card_id;");
 
@@ -114,6 +114,6 @@ if(!empty($errors)) {
 
 }
 
-mysql_close($mysql_handle);
+mysqli_close($mysqli_handle);
 
 ?>

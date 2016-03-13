@@ -14,7 +14,7 @@
             <?php
               // Loop through each color.
               $inc = 1;
-              while ($card = mysql_fetch_array($cards)) {
+              while ($card = mysqli_fetch_array($cards)) {
                   if($inc % 6 == 0) {
                     echo '</div>';             // Start a new row after 6 cards have been on one row.
                     echo '<div class="row">';

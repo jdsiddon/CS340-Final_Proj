@@ -7,14 +7,14 @@
 
   // The deck to add cards to is in the get parameters of the url 'http://localhost:8888/Final_Project/views/deck/edit.php?id=XX'.
   if(!empty($_POST['card_id'])) {
-    $card_id = mysql_escape_string($_POST['card_id']);
+    $card_id = mysqli_escape_string($_POST['card_id']);
   } else{
     $errors['card_id'] = "ID Required";
   }
 
   // Update Card in Owner's collection.
   $query = "DELETE FROM fp_card WHERE id='$card_id';";
-  $result = mysql_query($query);
+  $result = mysqli_query($query);
 
 
   // Insert was successful.
@@ -32,6 +32,6 @@
   echo json_encode($data);        // Send back to client.
 
 
-  mysql_close($mysql_handle);
+  mysqli_close($mysqli_handle);
 
 ?>
