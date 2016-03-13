@@ -79,11 +79,11 @@ if(!empty($errors)) {
 
   // Insert Card to an Owner's collection.
   $result_card_collection = mysqli_query($mysqli_handle, "INSERT INTO fp_collection (owner_id, card_id)
-    VALUES ($owner', $card_insert);");
+    VALUES ($owner, $card_insert);");
 
-  if($result_card_collection != 1) {       // An error occured during query.
-    break;
-  }
+  // if($result_card_collection != 1) {       // An error occured during query.
+  //   break;
+  // }
 
 
   // Make sure all inserts were successful.
